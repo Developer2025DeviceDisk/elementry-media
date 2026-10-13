@@ -1,0 +1,8 @@
+{
+  "rootDir": "..",
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "testMatch": ["**/test/api.integration-spec.ts", "**/test/mongodb.integration-spec.ts", "**/test/account.integration-spec.ts"],
+  "testTimeout": 30000,
+  "clearMocks": true
+}

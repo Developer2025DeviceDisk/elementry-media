@@ -1,0 +1,9 @@
+.next
+.next-browser
+.next-e2e
+node_modules
+package-lock.json
+next-env.d.ts
+playwright-report
+test-results
+.npm-cache

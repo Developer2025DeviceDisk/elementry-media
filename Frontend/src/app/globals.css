@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-destructive: #b91c1c;
+}
+:root {
+  --background: #ffffff;
+  --foreground: #111827;
+  --primary: #e8590c;
+  --primary-foreground: #ffffff;
+  --muted: #fff3ec;
+  --muted-foreground: #6b7280;
+  --border: #e5e7eb;
+}
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family:
+      Inter,
+      system-ui,
+      -apple-system,
+      'Segoe UI',
+      sans-serif;
+    line-height: 1.65;
+  }
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+  a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+  }
+  select,
+  textarea {
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.65rem 0.75rem;
+    background: var(--background);
+  }
+}
+@utility container {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 3vw, 1.75rem);
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+.Elementry-visual {
+  background-image:
+    repeating-linear-gradient(90deg, #11182708 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(0deg, #11182708 0 1px, transparent 1px 64px);
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

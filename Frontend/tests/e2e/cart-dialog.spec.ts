@@ -1,0 +1,22 @@
+import { test, expect } from '@playwright/test';
+import { mockApi, product } from './api-fixture';
+test('clear cart uses an accessible confirmation dialog', async ({ page }) => {
+  const state = await mockApi(page);
+  state.cart.items = [{ id: 'item1', product, quantity: 1 }];
+  state.cart.total = '2499.00';
+  state.cart.subtotal = '2499.00';
+  await page.goto('/cart');
+  await page.getByRole('button', { name: 'Clear cart', exact: true }).click();
+  const dialog = page.getByRole('alertdialog');
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole('button', { name: 'Cancel', exact: true })).toBeFocused();
+  const bounds = await dialog.boundingBox();
+  expect(bounds?.width).toBeLessThanOrEqual(page.viewportSize()?.width ?? 0);
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  expect(state.cart.items).toHaveLength(1);
+  await page.getByRole('button', { name: 'Clear cart', exact: true }).click();
+  await page.getByRole('button', { name: 'Confirm', exact: true }).click();
+  await expect(page.getByText('Your cart is empty')).toBeVisible();
+  expect(state.cart.items).toHaveLength(0);
+});

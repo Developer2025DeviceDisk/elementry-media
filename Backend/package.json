@@ -1,0 +1,68 @@
+{
+  "name": "elementry-commerce-api",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "build": "node scripts/clean-build.cjs && tsc -p tsconfig.build.json",
+    "start": "node dist/main.js",
+    "start:dev": "node --watch -r ts-node/register src/main.ts",
+    "typecheck": "tsc -p tsconfig.test.json",
+    "test": "jest --runInBand",
+    "test:integration": "jest --config test/jest-integration.json --runInBand",
+    "db:setup": "npm run build && node --env-file=.env scripts/setup-mongodb.cjs",
+    "db:check": "npm run build && node --env-file=.env scripts/check-connections.cjs",
+    "db:import": "npm run build && node --env-file=.env scripts/import-legacy-data.cjs",
+    "test:mongodb": "jest --config test/jest-mongodb.json --runInBand"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.2.7",
+    "@nestjs/config": "^4.0.4",
+    "@nestjs/core": "^11.2.7",
+    "@nestjs/platform-express": "^11.2.7",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "connect-redis": "^7.1.1",
+    "decimal.js": "^10.6.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "helmet": "^8.1.0",
+    "mongodb": "^6.20.0",
+    "nestjs-pino": "^4.4.0",
+    "pino-http": "^10.5.0",
+    "redis": "^4.7.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.2.7",
+    "@types/express": "^5.0.0",
+    "@types/express-session": "^1.18.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.19.0",
+    "@types/supertest": "^6.0.3",
+    "jest": "^30.5.2",
+    "supertest": "^7.1.0",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "overrides": {
+    "@istanbuljs/load-nyc-config": {
+      "js-yaml": "^4.1.1"
+    },
+    "glob@10.4.5": "^10.5.0",
+    "picomatch@4.0.3": "^4.0.4"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/src/**/*.spec.ts"
+    ],
+    "clearMocks": true
+  }
+}
