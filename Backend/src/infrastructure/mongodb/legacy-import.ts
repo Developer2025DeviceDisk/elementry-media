@@ -13,7 +13,7 @@ const times = { createdAt: date, updatedAt: date };
 const currency = z.string().regex(/^[A-Z]{3}$/);
 const exportSchema = z.object({
   users: z.array(z.object({ id, email: z.string().email().max(254).transform(v => v.trim().toLowerCase()), name: z.string().min(1).max(100), passwordHash: z.string().min(1).max(1024), role: z.nativeEnum(Role), disabledAt: date.nullable(), ...times }).strict()),
-  products: z.array(z.object({ id, sku: z.string().min(1).max(64), name: z.string().min(1).max(200), description: z.string().nullable(), price: money, currency, stock: z.number().int().min(0).max(2147483647), active: z.boolean(), ...times }).strict()),
+  products: z.array(z.object({ id, sku: z.string().min(1).max(64), name: z.string().min(1).max(200), brand: z.string().trim().min(1).max(100).optional(), description: z.string().nullable(), price: money, currency, stock: z.number().int().min(0).max(2147483647), active: z.boolean(), ...times }).strict()),
   orders: z.array(z.object({ id, userId: id, status: z.nativeEnum(OrderStatus), total: money, currency, idempotencyKey: z.string().min(1).max(128), ...times }).strict()),
   orderItems: z.array(z.object({ id, orderId: id, productId: id, quantity: z.number().int().min(1).max(2147483647), unitPrice: money, sku: z.string().min(1).max(64), name: z.string().min(1).max(200) }).strict()),
 }).strict();

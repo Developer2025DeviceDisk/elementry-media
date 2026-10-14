@@ -12,12 +12,13 @@ const server = createServer((request, response) => {
   response.setHeader('Access-Control-Allow-Credentials', 'true');
   if (url.pathname === '/api/v1/products') {
     const q = (url.searchParams.get('q') ?? '').toLowerCase();
+    const brand = (url.searchParams.get('brand') ?? '').trim().toLowerCase();
     const matches = [product.name, product.sku, product.description ?? ''].some((value) =>
       value.toLowerCase().includes(q),
     );
     response.end(
       JSON.stringify({
-        data: matches ? [product] : [],
+        data: matches && (!brand || product.brand.toLowerCase() === brand) ? [product] : [],
         page: Number(url.searchParams.get('page') ?? 1),
         limit: Number(url.searchParams.get('limit') ?? 12),
       }),

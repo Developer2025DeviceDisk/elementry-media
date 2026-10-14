@@ -13,6 +13,7 @@ import { Search } from 'lucide-react';
 const links = [
   { label: 'Home', href: '/' },
   { label: 'Products', href: '/products' },
+  { label: 'Brands', href: '/#brands' },
   { label: 'About', href: '/#about' },
   { label: 'Solutions', href: '/#services' },
   { label: 'FAQ', href: '/#faq' },

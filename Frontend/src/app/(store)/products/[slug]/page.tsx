@@ -70,6 +70,7 @@ export default async function ProductPage({ params }: Props) {
             name: product.name,
             description: product.description,
             sku: product.sku,
+            ...(product.brand ? { brand: { '@type': 'Brand', name: product.brand } } : {}),
             offers: {
               '@type': 'Offer',
               price: product.price,

@@ -18,7 +18,7 @@ export const collectionSchemas: Record<string, Document> = {
   products: { $and: [{ $jsonSchema: {
     bsonType: 'object', additionalProperties: false,
     required: ['_id', 'sku', 'name', 'description', 'price', 'currency', 'stock', 'active', 'createdAt', 'updatedAt'],
-    properties: { _id: uuid, sku: text(64), name: text(200), description: { bsonType: ['string', 'null'] }, price: money, currency, stock: integer(0), active: { bsonType: 'bool' }, ...times },
+    properties: { _id: uuid, sku: text(64), name: text(200), brand: text(100), description: { bsonType: ['string', 'null'] }, price: money, currency, stock: integer(0), active: { bsonType: 'bool' }, ...times },
   } }, { $expr: { $eq: ['$price', { $round: ['$price', 2] }] } }] },
   orders: { $and: [{ $jsonSchema: {
     bsonType: 'object', additionalProperties: false,

@@ -2,6 +2,8 @@
 
 NestJS with the official MongoDB Node.js driver and Redis. Persistent users, products, orders and order items live in MongoDB. Redis continues to handle sessions, atomic rate limits and catalog caching. Node 22 LTS is recommended; the backend supports Node 20.9+.
 
+Product brands are supported in MongoDB, catalog filters, detail pages and wishlists. The storefront lists the 43 store-supplied brands and official websites. See [brand setup and maintenance](docs/product-brands.md).
+
 The customer account area is documented in [Customer account dashboard](docs/customer-account.md): profile, owned orders, wishlist, addresses, saved UPI methods, shipping, return/refund records, preferences and password/session security. Run `npm run db:setup` after upgrading to deploy its collections and indexes.
 
 ## Setup

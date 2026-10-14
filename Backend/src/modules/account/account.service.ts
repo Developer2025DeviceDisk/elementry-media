@@ -141,7 +141,7 @@ export class AccountService {
     return account.wishlistProductIds.flatMap(id => {
       const product = products.find(product => product._id === id);
       if (!product) return [];
-      return [{ id: product._id, sku: product.sku, name: product.name, description: product.description, price: serializeMoney(product.price), currency: product.currency,
+      return [{ id: product._id, sku: product.sku, name: product.name, ...(product.brand ? { brand: product.brand } : {}), description: product.description, price: serializeMoney(product.price), currency: product.currency,
         stock: product.stock, active: product.active, createdAt: product.createdAt.toISOString(), updatedAt: product.updatedAt.toISOString() }];
     });
   }

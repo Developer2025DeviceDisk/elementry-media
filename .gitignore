@@ -1,0 +1,16 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+*.log
+.next/
+.next-browser/
+.next-e2e/
+out/
+playwright-report/
+test-results/
+.npm-cache/
+migration-data/

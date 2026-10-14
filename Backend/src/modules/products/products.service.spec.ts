@@ -37,6 +37,17 @@ describe('catalog search', () => {
   it('rejects oversized queries and accepts supported search parameters', async () => {
     expect(await validate(plainToInstance(ProductQuery, { q: 'Camera', page: '1', limit: '12' }))).toHaveLength(0);
     expect(await validate(plainToInstance(ProductQuery, { q: 'x'.repeat(101) }))).not.toHaveLength(0);
+    expect(await validate(plainToInstance(ProductQuery, { brand: 'x'.repeat(101) }))).not.toHaveLength(0);
+    expect(await validate(plainToInstance(ProductQuery, { brand: ['Panasonic', 'Canon'] }))).not.toHaveLength(0);
+  });
+  it('combines brand and search with literal, exact case-insensitive brand matching', async () => {
+    await service.list({ page: 1, limit: 12, brand: '  a.*(b)  ', q: 'Camera' });
+    expect(find).toHaveBeenCalledWith(expect.objectContaining({ active: true, brand: { $regex: '^a\\.\\*\\(b\\)$', $options: 'i' }, $or: expect.any(Array) }));
+  });
+  it('isolates brand filters in Redis cache keys and treats blank brands as unfiltered', async () => {
+    for (const brand of [undefined, 'Panasonic', 'Canon', '  ']) await service.list({ page: 1, limit: 12, brand });
+    expect(new Set(remember.mock.calls.slice(0, 3).map(call => call[0])).size).toBe(3);
+    expect(remember.mock.calls[0][0]).toBe(remember.mock.calls[3][0]);
   });
   it('escapes regex characters in user search', async () => {
     await service.list({ page: 1, limit: 12, q: 'a.*(b)' });

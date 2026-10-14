@@ -18,6 +18,7 @@ export interface ProductDocument {
   _id: string;
   sku: string;
   name: string;
+  brand?: string;
   description: string | null;
   price: Decimal128;
   currency: string;

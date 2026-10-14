@@ -13,6 +13,7 @@ export const productApi = baseApi.injectEndpoints({
               page: params.page ?? 1,
               limit: params.limit ?? 20,
               ...(params.q ? { q: params.q } : {}),
+              ...(params.brand ? { brand: params.brand } : {}),
             },
       }),
       providesTags: (result) => [

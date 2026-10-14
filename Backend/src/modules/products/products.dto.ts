@@ -5,6 +5,9 @@ export class ProductQuery {
   @IsOptional() @IsString() @MaxLength(100)
   q?: string;
 
+  @IsOptional() @IsString() @MaxLength(100)
+  brand?: string;
+
   @Type(() => Number) @IsInt() @Min(1) @Max(1000)
   page = 1;
 

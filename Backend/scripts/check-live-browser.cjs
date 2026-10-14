@@ -88,7 +88,7 @@ async function main() {
     const db = mongo.db(database);
     await setupMongoSchema(db);
     const now = new Date();
-    await db.collection('products').insertOne({ _id: productId, sku: `BROWSER-${token}`, name: 'Browser Verification Camera', description: 'Temporary live verification fixture', price: Decimal128.fromString('19.90'), currency: 'INR', stock: 3, active: true, createdAt: now, updatedAt: now });
+    await db.collection('products').insertOne({ _id: productId, sku: `BROWSER-${token}`, name: 'Browser Verification Camera', brand: 'Panasonic', description: 'Temporary live verification fixture', price: Decimal128.fromString('19.90'), currency: 'INR', stock: 3, active: true, createdAt: now, updatedAt: now });
     apiProcess = start([path.join(backend, 'dist', 'main.js')], backend, {
       ...process.env, NODE_ENV: 'test', PORT: String(apiPort), MONGODB_DATABASE: database, REDIS_PREFIX: prefix,
       APP_ORIGINS: webOrigin, COOKIE_SAME_SITE: 'lax', TRUST_PROXY: '', LOG_LEVEL: 'silent',
@@ -101,11 +101,41 @@ async function main() {
     await waitForServer(webProcess, `${webOrigin}/login`);
     browser = await chromium.launch({ headless: true });
     for (const [name, options] of [['desktop', { viewport: { width: 1440, height: 1000 } }], ['mobile', devices['Pixel 7']]]) {
-      console.log(`${name}: checking live registration, session, logout, login and catalog`);
+      if (process.env.BROWSER_CHECK !== 'brands') console.log(`${name}: checking live registration, session, logout, login and catalog`);
       context = await browser.newContext(options);
       const page = await context.newPage();
       page.setDefaultTimeout(30000);
       page.setDefaultNavigationTimeout(40000);
+      if (process.env.BROWSER_CHECK === 'brands') {
+        console.log(`${name}: checking brand directory, real MongoDB filters and product details`);
+        await navigate(page, webOrigin + '/');
+        const directory = page.getByRole('list', { name: 'Brands and product lines' });
+        await expect(directory.getByRole('listitem')).toHaveCount(43);
+        await expect(directory.getByRole('link', { name: 'Harmonic official website (opens in a new tab)', exact: true })).toHaveAttribute('href', 'https://www.harmonicinc.com/');
+        const screenshots = path.join(backend, 'test-results'); fs.mkdirSync(screenshots, { recursive: true });
+        await page.locator('#brands').screenshot({ path: path.join(screenshots, `brands-home-${name}.png`), style: 'header { visibility: hidden; }' });
+        await directory.getByRole('link', { name: 'Browse Panasonic products', exact: true }).click();
+        await expect(page.getByRole('heading', { name: 'Panasonic products', exact: true })).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'Browser Verification Camera', exact: true })).toBeVisible();
+        await page.getByRole('searchbox', { name: 'Search products', exact: true }).fill('Verification');
+        await page.getByRole('button', { name: 'Search', exact: true }).click();
+        await expect(page.getByRole('heading', { name: 'Browser Verification Camera', exact: true })).toBeVisible();
+        await expect(page.getByLabel('Filter by brand')).toHaveValue('Panasonic');
+        await page.screenshot({ path: path.join(screenshots, `brands-products-${name}.png`), fullPage: true });
+        await page.getByLabel('Filter by brand').selectOption('Canon');
+        await page.getByRole('button', { name: 'Search', exact: true }).click();
+        await expect(page.getByRole('heading', { name: 'No products found' })).toBeVisible();
+        await page.getByRole('link', { name: 'Clear', exact: true }).click();
+        await expect(page.getByRole('heading', { name: 'Browser Verification Camera', exact: true })).toBeVisible();
+        await navigate(page, `${webOrigin}/products/browser-verification-camera--${productId}`);
+        await expect(page.getByRole('link', { name: 'Panasonic', exact: true })).toHaveAttribute('href', '/products?brand=Panasonic');
+        await expect(page.getByRole('link', { name: /Visit Panasonic official website/ })).toHaveAttribute('href', 'https://www.panasonic.com/in/');
+        const filtered = await context.request.get(`${apiOrigin}/api/v1/products?brand=panasonic`);
+        if (filtered.status() !== 200 || (await filtered.json()).data[0]?.brand !== 'Panasonic') throw new Error('Real API brand filter did not return persisted brand');
+        await context.close(); context = undefined;
+        console.log(`${name}: brand checks passed`);
+        continue;
+      }
       const email = `browser-${name}-${token}@example.com`;
       emails.push(email);
       const password = 'live browser verification password';

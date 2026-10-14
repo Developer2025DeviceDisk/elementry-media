@@ -49,6 +49,7 @@ describe('API integration', () => {
     const now = new Date();
     await mongo.products.insertMany(productIds.map((_id, i) => ({
       _id, sku: `${tag}-${i}`, name: `${tag} Camera ${i === 0 ? 'a.*(b)' : i}`, description: 'catalog persistence test',
+      ...(i !== 2 ? { brand: i === 1 ? 'Canon' : 'Panasonic' } : {}),
       price: moneyToDecimal(i === 0 ? '9999999999.99' : '19.90'), currency: 'INR', stock: 3,
       active: i < 3, createdAt: new Date(now.getTime() + i), updatedAt: now,
     })));
@@ -119,6 +120,25 @@ describe('API integration', () => {
     await request(app.getHttpServer()).get(`/api/v1/products/${productIds[3]}`).expect(404);
     await request(app.getHttpServer()).get(`/api/v1/products/${randomUUID()}`).expect(404);
     await request(app.getHttpServer()).get('/api/v1/products/not-a-uuid').expect(400);
+  });
+
+  it('filters persisted brands independently of text search and cache entries', async () => {
+    const catalog = await request(app.getHttpServer()).get('/api/v1/products').query({ q: tag }).expect(200);
+    expect(catalog.body.data).toHaveLength(3);
+    const panasonic = await request(app.getHttpServer()).get('/api/v1/products').query({ q: tag, brand: 'panasonic' }).expect(200);
+    expect(panasonic.body.data.map((p: { id: string }) => p.id)).toEqual([productIds[0]]);
+    expect(panasonic.body.data[0].brand).toBe('Panasonic');
+    const canon = await request(app.getHttpServer()).get('/api/v1/products').query({ q: tag, brand: 'Canon' }).expect(200);
+    expect(canon.body.data.map((p: { id: string }) => p.id)).toEqual([productIds[1]]);
+    const exact = await request(app.getHttpServer()).get('/api/v1/products').query({ q: tag, brand: 'Pan' }).expect(200);
+    expect(exact.body.data).toEqual([]);
+    const literal = await request(app.getHttpServer()).get('/api/v1/products').query({ q: tag, brand: '.*' }).expect(200);
+    expect(literal.body.data).toEqual([]);
+    const missingBrand = await request(app.getHttpServer()).get(`/api/v1/products/${productIds[2]}`).expect(200);
+    expect(missingBrand.body.brand).toBeUndefined();
+    const detail = await request(app.getHttpServer()).get(`/api/v1/products/${productIds[0]}`).expect(200);
+    expect(detail.body.brand).toBe('Panasonic');
+    await request(app.getHttpServer()).get('/api/v1/products').query({ brand: 'x'.repeat(101) }).expect(400);
   });
 
   it('enforces MongoDB uniqueness and monetary/stock validation on direct writes', async () => {
