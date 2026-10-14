@@ -46,9 +46,9 @@ export default async function ProductsPage({ searchParams }: Props) {
     .then((data) => ({ data, error: undefined }))
     .catch((error: unknown) => ({ data: undefined, error }));
   return (
-    <div className="container py-10">
+    <div className="container py-10 sm:py-14">
       <Breadcrumbs items={[{ label: 'Products' }]} />
-      <div className="mb-10 flex items-end justify-between gap-4">
+      <div className="mb-8 flex flex-wrap items-end justify-between gap-4 rounded-2xl border bg-surface p-6 sm:p-8">
         <div>
           <p className="mb-3 text-xs font-bold tracking-widest text-primary uppercase">
             Professional Equipment
@@ -72,7 +72,7 @@ export default async function ProductsPage({ searchParams }: Props) {
         key={JSON.stringify([q, brand])}
         role="search"
         action="/products"
-        className="mb-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end"
+        className="mb-6 flex flex-col gap-3 rounded-2xl border bg-background p-5 shadow-xs sm:flex-row sm:flex-wrap sm:items-end"
       >
         <label className="flex min-w-0 flex-col gap-2 text-sm font-medium sm:min-w-64 sm:flex-1">
           Search products
@@ -83,7 +83,7 @@ export default async function ProductsPage({ searchParams }: Props) {
             defaultValue={q}
             maxLength={100}
             placeholder="Search by name, SKU, or description"
-            className="min-h-11 min-w-0 rounded-lg border px-4 py-2"
+            className="min-h-11 min-w-0 rounded-xl border bg-surface px-4 py-2"
           />
         </label>
         <label className="flex flex-col gap-2 text-sm font-medium sm:w-64">
@@ -109,7 +109,7 @@ export default async function ProductsPage({ searchParams }: Props) {
           </Button>
         )}
       </form>
-      <details className="mb-8 rounded-xl border bg-muted/30 p-4 sm:p-5">
+      <details className="mb-8 rounded-xl border bg-surface p-4 sm:p-5">
         <summary className="cursor-pointer text-sm font-semibold">
           Browse all {brands.length} brands &amp; product lines
         </summary>

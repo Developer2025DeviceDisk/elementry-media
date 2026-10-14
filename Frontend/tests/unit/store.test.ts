@@ -25,6 +25,27 @@ afterEach(() => {
 const json = (data: unknown, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json' } });
 describe('RTK Query session and cache behavior', () => {
+  it('returns a connection error without network or CSRF requests when the API URL is missing', async () => {
+    const configuredUrl = env.apiUrl;
+    env.apiUrl = undefined;
+    const fetch = vi.fn();
+    vi.stubGlobal('fetch', fetch);
+    try {
+      const store = testStore();
+      const read = await store.dispatch(
+        productApi.endpoints.getProducts.initiate({ page: 1, limit: 12 }),
+      );
+      const write = await store.dispatch(
+        cartApi.endpoints.addToCart.initiate({ productId: 'p1', quantity: 1 }),
+      );
+      expect(read.error).toMatchObject({ status: 'FETCH_ERROR' });
+      expect(write.error).toMatchObject({ status: 'FETCH_ERROR' });
+      expect(fetch).not.toHaveBeenCalled();
+      expect(store.getState().auth.csrfToken).toBeNull();
+    } finally {
+      env.apiUrl = configuredUrl;
+    }
+  });
   it('sends catalog text search while advanced search is disabled', async () => {
     const advancedSearch = env.search;
     env.search = false;

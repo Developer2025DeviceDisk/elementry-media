@@ -12,7 +12,7 @@ interface TransportState {
   auth: { csrfToken: string | null };
 }
 const rawQuery = fetchBaseQuery({
-  baseUrl: `${env.apiUrl.replace(/\/$/, '')}/`,
+  baseUrl: env.apiUrl ? `${env.apiUrl.replace(/\/$/, '')}/` : undefined,
   credentials: 'include',
   timeout: 15000,
   prepareHeaders(headers, { getState }) {
@@ -29,6 +29,11 @@ const baseQuery: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> =
   api,
   options,
 ) => {
+  // A frontend-only deployment can render while its backend URL is being configured.
+  // Never send account requests to an invented host or the frontend's own routes.
+  if (!env.apiUrl) {
+    return { error: { status: 'FETCH_ERROR', error: 'Backend API is not configured' } };
+  }
   const method = typeof args === 'string' ? 'GET' : (args.method ?? 'GET').toUpperCase();
   if (
     !['GET', 'HEAD', 'OPTIONS'].includes(method) &&

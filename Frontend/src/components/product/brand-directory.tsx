@@ -13,7 +13,7 @@ export function BrandDirectory({ selectedBrand }: { selectedBrand?: string }) {
         return (
           <li
             key={brand.name}
-            className={`flex flex-col justify-between rounded-xl border bg-background transition hover:border-primary/50 ${selected ? 'border-primary ring-1 ring-primary' : ''}`}
+            className={`flex flex-col justify-between overflow-hidden rounded-xl border bg-background shadow-xs transition hover:border-primary/50 hover:shadow-sm ${selected ? 'border-primary ring-1 ring-primary' : ''}`}
           >
             <Link
               href={brandCatalogHref(brand.name)}

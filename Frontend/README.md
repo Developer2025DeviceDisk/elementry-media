@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:3001. NestJS defaults to port 4000. Add `http://localhost:3001` to the backend `APP_ORIGINS`; start the backend and its configured dependencies separately. Frontend environment files contain public URLs and capability switches only. Never copy `Backend/.env` into this directory. Restart Next.js after changing public environment variables; production values are embedded at build time.
+Open http://localhost:3001. The frontend defaults to the deployed Render backend at `https://elementry-media.onrender.com/api/v1`. To use a local NestJS backend instead, set `NEXT_PUBLIC_API_URL=http://localhost:4000/api/v1` in `.env.local` and start the backend and its dependencies separately. Add `http://localhost:3001` to that backend's `APP_ORIGINS`. Frontend environment files contain public URLs and capability switches only. Never copy `Backend/.env` into this directory. Restart Next.js after changing public environment variables; production values are embedded at build time.
 
 ```powershell
 npm run typecheck
@@ -24,6 +24,52 @@ npm run test:e2e
 ```
 
 The E2E suite runs against a local HTTP contract fixture and mocked browser API responses, including failure and role cases. Tests use frontend/API ports 3102/4102 and `.next-e2e`, allowing a regular development server to stay open. Live account verification with MongoDB/Redis is covered by [the backend browser checks](../Backend/docs/customer-account.md).
+
+## Deploy the Frontend folder on Vercel
+
+Import the repository with **Root Directory** set to `Frontend` (case-sensitive),
+**Framework Preset** set to Next.js, and **Node.js Version** set to 22.x.
+`vercel.json` configures `npm ci` and `npm run build`. Leave Output Directory at
+the Next.js default; this application needs Next.js server functions.
+
+In the project's Environment Variables, add values for Production and any Preview
+deployments that should use your backend:
+
+| Variable                                | Deployment value                                                                  |
+| --------------------------------------- | --------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_API_URL`                   | `https://elementry-media.onrender.com/api/v1` (also used by default when omitted) |
+| `NEXT_PUBLIC_APP_URL`                   | Optional explicit canonical frontend URL, for example `https://your-domain.com`   |
+| `NEXT_PUBLIC_COMMERCE_API_ENABLED`      | `false` unless its contracts are implemented                                      |
+| `NEXT_PUBLIC_SEARCH_API_ENABLED`        | `false` unless its contracts are implemented                                      |
+| `NEXT_PUBLIC_ADMIN_API_ENABLED`         | `false` unless its contracts are implemented                                      |
+| `NEXT_PUBLIC_PASSWORD_RECOVERY_ENABLED` | `false` unless its contracts are implemented                                      |
+
+Replace the example frontend domain with your actual deployment. Public URL values must
+include `https://`; flags accept `true` or `false` and default to `false` when
+omitted or blank. Invalid nonempty values still fail validation.
+
+When `NEXT_PUBLIC_APP_URL` is omitted, the build uses
+`https://VERCEL_PROJECT_PRODUCTION_URL`, then `https://VERCEL_URL`, and finally
+`http://localhost:3001` for local builds. Enable access to system environment
+variables in Vercel, or provide `NEXT_PUBLIC_APP_URL` explicitly. See
+[Vercel's system environment variable documentation](https://vercel.com/docs/environment-variables/system-environment-variables).
+The resolved public site URL is embedded in both server and browser code.
+
+An omitted or blank `NEXT_PUBLIC_API_URL` uses
+`https://elementry-media.onrender.com/api/v1`. The resolved URL is embedded in both
+server and browser code, including catalog and account requests through RTK Query.
+An explicit value overrides this default for local development, previews, or a
+different backend. Remove or replace any old localhost value in Vercel settings.
+The frontend deployment does not deploy the backend or its database/Redis services.
+
+Add the actual frontend origin to the backend's `APP_ORIGINS`, and configure HTTPS
+session cookies for your deployment domains. Never copy `Backend/.env` into the
+frontend or expose database/session credentials with a `NEXT_PUBLIC_` prefix.
+Frontend `.env.local` is gitignored and is not uploaded with a Git-based deployment.
+
+Redeploy after changing public environment variables because Next.js embeds them
+at build time. If page collection fails in `src/config/env.ts`, inspect the first
+validation error above the `/_not-found` summary for an invalid URL or flag.
 
 ## Architecture
 

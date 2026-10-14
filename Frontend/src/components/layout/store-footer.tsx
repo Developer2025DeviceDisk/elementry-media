@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Brand } from './brand';
 export function StoreFooter() {
   return (
-    <footer className="border-t bg-gray-50">
-      <div className="container grid gap-8 py-14 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
+    <footer className="footer-theme border-t bg-secondary text-secondary-foreground">
+      <div className="container grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
         <div>
           <Brand />
           <p className="mt-3 max-w-sm text-sm text-muted-foreground">

@@ -48,7 +48,7 @@ export function AccountShell({ children }: { children: React.ReactNode }) {
         <div className="grid gap-8 lg:grid-cols-[240px_minmax(0,1fr)]">
           <nav
             aria-label="Customer account"
-            className="flex gap-2 overflow-x-auto rounded-2xl border bg-muted/30 p-3 lg:sticky lg:top-28 lg:flex-col lg:self-start"
+            className="flex gap-2 overflow-x-auto rounded-2xl border bg-surface p-3 shadow-xs lg:sticky lg:top-28 lg:flex-col lg:self-start"
           >
             {accountLinks.map(({ href, title, icon: Icon }) => {
               const active =
@@ -61,7 +61,8 @@ export function AccountShell({ children }: { children: React.ReactNode }) {
                   aria-current={active ? 'page' : undefined}
                   className={cn(
                     'flex shrink-0 items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors hover:bg-muted',
-                    active && 'bg-primary text-primary-foreground hover:bg-primary/90',
+                    active &&
+                      'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/90',
                   )}
                 >
                   <Icon className="size-4" aria-hidden="true" />

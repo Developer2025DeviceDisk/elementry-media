@@ -1,6 +1,16 @@
 import type { NextConfig } from 'next';
+import { resolveAppUrl } from './src/config/app-url';
 
 const config: NextConfig = {
+  env: {
+    NEXT_PUBLIC_API_URL:
+      process.env.NEXT_PUBLIC_API_URL?.trim() || 'https://elementry-media.onrender.com/api/v1',
+    NEXT_PUBLIC_APP_URL: resolveAppUrl({
+      appUrl: process.env.NEXT_PUBLIC_APP_URL,
+      productionDomain: process.env.VERCEL_PROJECT_PRODUCTION_URL,
+      deploymentDomain: process.env.VERCEL_URL,
+    }),
+  },
   distDir:
     process.env.NEXT_TEST_BUILD === 'browser'
       ? '.next-browser'

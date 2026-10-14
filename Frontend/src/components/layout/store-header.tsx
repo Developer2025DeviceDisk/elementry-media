@@ -28,12 +28,12 @@ export function StoreHeader() {
   const user = !expired && !sessionError ? data?.user : undefined;
   return (
     <>
-      <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur">
+      <header className="sticky top-0 z-30 border-b bg-background/95 shadow-xs backdrop-blur-xl">
         <div className="container flex h-20 items-center justify-between gap-3 md:gap-6">
           <Brand />
-          <nav aria-label="Main" className="hidden items-center gap-5 text-sm xl:flex">
+          <nav aria-label="Main" className="hidden items-center gap-5 text-sm font-medium xl:flex">
             {links.map(({ label, href }) => (
-              <Link key={href} href={href} className="hover:text-primary">
+              <Link key={href} href={href} className="py-2 transition-colors hover:text-primary">
                 {label}
               </Link>
             ))}
@@ -43,14 +43,14 @@ export function StoreHeader() {
             <form
               role="search"
               action="/products"
-              className="mr-3 hidden w-44 items-center rounded-sm border border-foreground px-3 lg:flex"
+              className="mr-2 hidden w-40 items-center rounded-xl border bg-surface px-3 transition focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/15 lg:flex"
             >
               <input
                 aria-label="Search catalog"
                 type="search"
                 name="q"
                 maxLength={100}
-                placeholder="Search..."
+                placeholder="Search catalog"
                 className="h-11 min-w-0 w-full bg-transparent text-sm outline-none"
               />
               <button aria-label="Search catalog" className="p-1 text-foreground">
@@ -75,7 +75,7 @@ export function StoreHeader() {
               asChild
               variant="ghost"
               size="icon"
-              className="rounded-full bg-foreground text-background hover:bg-foreground/80"
+              className="rounded-xl bg-secondary text-secondary-foreground hover:bg-secondary/90 hover:text-secondary-foreground"
             >
               <Link
                 href={user ? '/account' : '/login'}
@@ -124,7 +124,7 @@ export function StoreHeader() {
                 key={href}
                 href={href}
                 onClick={() => dispatch(closeSidebar())}
-                className="capitalize"
+                className="rounded-lg px-3 py-2 font-medium transition-colors hover:bg-accent hover:text-primary"
               >
                 {label}
               </Link>
@@ -132,7 +132,7 @@ export function StoreHeader() {
             <form
               role="search"
               action="/products"
-              className="flex items-center gap-2 border p-2 lg:hidden"
+              className="flex items-center gap-2 rounded-xl border bg-surface p-2 lg:hidden"
             >
               <input
                 aria-label="Search catalog"

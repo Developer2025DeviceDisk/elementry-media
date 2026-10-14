@@ -49,7 +49,7 @@ export function AdminSidebar() {
             key={href}
             aria-current={pathname === href ? 'page' : undefined}
             onClick={() => dispatch(closeSidebar())}
-            className={`flex items-center gap-3 rounded-lg px-3 py-3 text-sm ${pathname === href ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'}`}
+            className={`flex items-center gap-3 rounded-xl px-3 py-3 text-sm transition-colors ${pathname === href ? 'bg-secondary text-secondary-foreground' : 'text-muted-foreground hover:bg-accent hover:text-primary'}`}
           >
             <Icon className="size-4" />
             {label}
@@ -87,7 +87,7 @@ export function AdminHeader() {
 }
 export function AdminShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-muted/30 md:grid md:grid-cols-[240px_1fr]">
+    <div className="min-h-screen bg-surface md:grid md:grid-cols-[240px_1fr]">
       <AdminSidebar />
       <div className="min-w-0">
         <AdminHeader />

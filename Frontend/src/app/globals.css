@@ -8,16 +8,27 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-input: var(--border);
+  --color-surface: var(--surface);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: #16674a;
   --color-destructive: #b91c1c;
 }
 :root {
   --background: #ffffff;
-  --foreground: #111827;
-  --primary: #e8590c;
+  --foreground: #18283b;
+  --primary: #0b716d;
   --primary-foreground: #ffffff;
-  --muted: #fff3ec;
-  --muted-foreground: #6b7280;
-  --border: #e5e7eb;
+  --muted: #f0f4f6;
+  --muted-foreground: #586779;
+  --border: #dbe3e9;
+  --surface: #f7f9fb;
+  --secondary: #10283f;
+  --secondary-foreground: #f5f9fc;
+  --accent: #e8f4f1;
+  --accent-foreground: #08635f;
 }
 @layer base {
   * {
@@ -27,12 +38,24 @@
     background: var(--background);
     color: var(--foreground);
     font-family:
+      'Segoe UI',
       Inter,
       system-ui,
       -apple-system,
-      'Segoe UI',
       sans-serif;
     line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--secondary);
   }
   button,
   a,
@@ -41,7 +64,12 @@
   textarea {
     -webkit-tap-highlight-color: transparent;
   }
-  a:focus-visible {
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 4px;
   }
@@ -51,6 +79,18 @@
     border-radius: 0.5rem;
     padding: 0.65rem 0.75rem;
     background: var(--background);
+  }
+  input,
+  select,
+  textarea {
+    accent-color: var(--primary);
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--muted-foreground);
   }
 }
 @utility container {
@@ -65,8 +105,25 @@ html {
 }
 .Elementry-visual {
   background-image:
-    repeating-linear-gradient(90deg, #11182708 0 1px, transparent 1px 64px),
-    repeating-linear-gradient(0deg, #11182708 0 1px, transparent 1px 64px);
+    radial-gradient(ellipse at top right, #0b716d14, transparent 70%),
+    repeating-linear-gradient(90deg, #10283f06 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(0deg, #10283f06 0 1px, transparent 1px 40px);
+}
+.studio-visual {
+  background-image:
+    radial-gradient(ellipse at top right, #0b716d55, transparent 65%),
+    linear-gradient(145deg, #173950, #10283f 65%);
+}
+.footer-theme {
+  --primary: #8edbd1;
+  --muted-foreground: #b8c7d5;
+  --border: #ffffff24;
+}
+.footer-theme a {
+  transition: color 160ms ease;
+}
+.footer-theme a:hover {
+  color: var(--primary);
 }
 @media (prefers-reduced-motion: reduce) {
   *,

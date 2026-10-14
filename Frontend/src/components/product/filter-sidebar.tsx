@@ -86,7 +86,7 @@ export function FilterSidebar() {
   return (
     <form
       aria-label="Product filters"
-      className="space-y-6 rounded-xl border p-5"
+      className="space-y-6 rounded-2xl border bg-surface p-5"
       onSubmit={(event) => {
         event.preventDefault();
         const form = new FormData(event.currentTarget);

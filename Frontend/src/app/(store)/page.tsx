@@ -60,7 +60,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
-      <div className="border-b">
+      <div className="border-b bg-background">
         <div className="container grid grid-cols-2 text-center md:grid-cols-4">
           {[
             ['8', '+', 'Years Experience'],
@@ -68,8 +68,8 @@ export default async function HomePage() {
             ['50', '+', 'Happy Clients'],
             ['24', '/7', 'Support Available'],
           ].map(([number, suffix, label]) => (
-            <div key={label} className="border-r px-3 py-8 last:border-0">
-              <p className="text-4xl font-bold">
+            <div key={label} className="px-3 py-6 md:border-r md:last:border-0">
+              <p className="text-3xl font-semibold tracking-tight text-secondary">
                 {number}
                 <span className="text-primary">{suffix}</span>
               </p>
@@ -78,118 +78,7 @@ export default async function HomePage() {
           ))}
         </div>
       </div>
-      <section
-        id="about"
-        className="container grid items-center gap-14 py-20 lg:grid-cols-[1.1fr_1fr]"
-      >
-        <div>
-          <p className="text-xs font-bold tracking-widest text-primary uppercase">Our Story</p>
-          <h2 className="mt-3 text-3xl leading-tight font-bold sm:text-4xl">
-            Your Trusted Partner in Broadcast Solutions
-          </h2>
-          <p className="mt-5 text-lg text-gray-600">
-            Founded in 2016, Elementry Media Technology specializes in Smart Classes, Lecture
-            Capture, Video Conferencing, Audio-Video Studio, and System Integration.
-          </p>
-          <p className="mt-4 text-muted-foreground">
-            Our experts blend technology, technical expertise, and creativity to deliver reliable
-            and tailored broadcasting solutions in India and abroad.
-          </p>
-          <div className="mt-5 inline-flex items-center gap-2 rounded-lg bg-muted px-4 py-3 text-sm font-semibold">
-            <Check className="size-5 text-primary" />
-            ATHENSA Certified Business Partner
-          </div>
-          <p className="mt-5 text-sm text-muted-foreground">
-            We collaborate with industry leaders including:
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {['APACE Systems', 'ISID MAM', 'Tulix Systems', 'SuperMicro'].map((brand) => (
-              <span key={brand} className="rounded-full border px-4 py-2 text-sm font-semibold">
-                {brand}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="Elementry-visual flex min-h-72 flex-col items-center justify-center gap-5 rounded-[20px] border p-8 lg:min-h-96">
-          <Radio className="size-24 stroke-[1] text-primary" aria-hidden="true" />
-          <p className="text-center text-xl font-bold">Technology. Expertise. Creativity.</p>
-          <p className="text-center text-sm text-muted-foreground">
-            Broadcast solutions, designed around your workflow.
-          </p>
-        </div>
-      </section>
-      <section className="border-y bg-gray-50 py-20" id="why">
-        <div className="container">
-          <p className="text-xs font-bold tracking-widest text-primary uppercase">Our Values</p>
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">What we stand for</h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map(({ icon: Icon, title, text }) => (
-              <article key={title} className="rounded-[14px] border bg-background p-6">
-                <div className="flex size-11 items-center justify-center rounded-lg bg-muted text-primary">
-                  <Icon className="size-6" aria-hidden="true" />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold">{title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="services" className="container py-20">
-        <p className="text-xs font-bold tracking-widest text-primary uppercase">What We Do</p>
-        <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Comprehensive Broadcast Services</h2>
-        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-          End-to-end solutions for all your broadcasting needs. From consultancy to implementation
-          and support.
-        </p>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map(([title, text]) => (
-            <article
-              key={title}
-              className="rounded-[14px] border p-6 transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
-            >
-              <div
-                aria-hidden="true"
-                className="flex size-11 items-center justify-center rounded-lg bg-muted font-bold text-primary"
-              >
-                {title[0]}
-              </div>
-              <h3 className="mt-4 text-lg font-semibold">{title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section
-        id="brands"
-        aria-labelledby="brands-heading"
-        className="scroll-mt-24 border-t bg-gray-50 py-16 sm:py-20"
-      >
-        <div className="container">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="text-xs font-bold tracking-widest text-primary uppercase">
-                Our Equipment Range
-              </p>
-              <h2 id="brands-heading" className="mt-3 text-3xl font-bold sm:text-4xl">
-                Brands we supply
-              </h2>
-              <p className="mt-4 max-w-2xl text-muted-foreground">
-                Broadcast, video, audio, display, and IT equipment from the brands and product lines
-                below. Choose a name to browse our catalog, or visit its official website.
-              </p>
-            </div>
-            <Link
-              href="/products"
-              className="flex items-center gap-2 text-sm font-semibold text-primary"
-            >
-              Browse all products <ArrowRight className="size-4" aria-hidden="true" />
-            </Link>
-          </div>
-          <BrandDirectory />
-        </div>
-      </section>
-      <section className="border-y bg-gray-50 py-20">
+      <section className="border-b bg-surface py-16 sm:py-20">
         <div className="container">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -215,6 +104,117 @@ export default async function HomePage() {
           )}
         </div>
       </section>
+      <section
+        id="about"
+        className="container grid items-center gap-14 py-16 sm:py-20 lg:grid-cols-[1.1fr_1fr]"
+      >
+        <div>
+          <p className="text-xs font-bold tracking-widest text-primary uppercase">Our Story</p>
+          <h2 className="mt-3 text-3xl leading-tight font-bold sm:text-4xl">
+            Your Trusted Partner in Broadcast Solutions
+          </h2>
+          <p className="mt-5 text-lg text-muted-foreground">
+            Founded in 2016, Elementry Media Technology specializes in Smart Classes, Lecture
+            Capture, Video Conferencing, Audio-Video Studio, and System Integration.
+          </p>
+          <p className="mt-4 text-muted-foreground">
+            Our experts blend technology, technical expertise, and creativity to deliver reliable
+            and tailored broadcasting solutions in India and abroad.
+          </p>
+          <div className="mt-5 inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-semibold">
+            <Check className="size-5 text-primary" />
+            ATHENSA Certified Business Partner
+          </div>
+          <p className="mt-5 text-sm text-muted-foreground">
+            We collaborate with industry leaders including:
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {['APACE Systems', 'ISID MAM', 'Tulix Systems', 'SuperMicro'].map((brand) => (
+              <span key={brand} className="rounded-full border px-4 py-2 text-sm font-semibold">
+                {brand}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="Elementry-visual flex min-h-72 flex-col items-center justify-center gap-5 rounded-[20px] border p-8 lg:min-h-96">
+          <Radio className="size-24 stroke-[1] text-primary" aria-hidden="true" />
+          <p className="text-center text-xl font-bold">Technology. Expertise. Creativity.</p>
+          <p className="text-center text-sm text-muted-foreground">
+            Broadcast solutions, designed around your workflow.
+          </p>
+        </div>
+      </section>
+      <section className="border-y bg-surface py-20" id="why">
+        <div className="container">
+          <p className="text-xs font-bold tracking-widest text-primary uppercase">Our Values</p>
+          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">What we stand for</h2>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {values.map(({ icon: Icon, title, text }) => (
+              <article key={title} className="rounded-2xl border bg-background p-7 shadow-xs">
+                <div className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary">
+                  <Icon className="size-6" aria-hidden="true" />
+                </div>
+                <h3 className="mt-4 text-lg font-semibold">{title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section id="services" className="container py-20">
+        <p className="text-xs font-bold tracking-widest text-primary uppercase">What We Do</p>
+        <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Comprehensive Broadcast Services</h2>
+        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+          End-to-end solutions for all your broadcasting needs. From consultancy to implementation
+          and support.
+        </p>
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map(([title, text]) => (
+            <article
+              key={title}
+              className="rounded-2xl border bg-background p-7 shadow-xs transition duration-200 hover:border-primary/40 hover:shadow-md"
+            >
+              <div
+                aria-hidden="true"
+                className="flex size-11 items-center justify-center rounded-xl bg-accent font-bold text-primary"
+              >
+                {title[0]}
+              </div>
+              <h3 className="mt-4 text-lg font-semibold">{title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section
+        id="brands"
+        aria-labelledby="brands-heading"
+        className="scroll-mt-24 border-t bg-surface py-16 sm:py-20"
+      >
+        <div className="container">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold tracking-widest text-primary uppercase">
+                Our Equipment Range
+              </p>
+              <h2 id="brands-heading" className="mt-3 text-3xl font-bold sm:text-4xl">
+                Brands we supply
+              </h2>
+              <p className="mt-4 max-w-2xl text-muted-foreground">
+                Broadcast, video, audio, display, and IT equipment from the brands and product lines
+                below. Choose a name to browse our catalog, or visit its official website.
+              </p>
+            </div>
+            <Link
+              href="/products"
+              className="flex items-center gap-2 text-sm font-semibold text-primary"
+            >
+              Browse all products <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          </div>
+          <BrandDirectory />
+        </div>
+      </section>
       <section id="faq" className="container py-20">
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tracking-widest text-primary uppercase">FAQ</p>
@@ -223,7 +223,7 @@ export default async function HomePage() {
             <details
               key={question}
               open={index === 0}
-              className="group mb-3 rounded-xl border px-6 py-5"
+              className="group mb-3 rounded-2xl border bg-background px-6 py-5 transition-colors open:border-primary/25 open:bg-surface"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
                 {question}
@@ -239,9 +239,9 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
-      <section id="contact" className="border-t bg-gray-50 py-20">
+      <section id="contact" className="border-t bg-surface py-20">
         <div className="container">
-          <div className="rounded-[20px] border border-t-4 border-t-primary bg-background px-6 py-14 text-center">
+          <div className="rounded-3xl border bg-background px-6 py-14 text-center shadow-sm">
             <h2 className="text-3xl font-bold sm:text-4xl">
               Planning a studio or broadcast project?
             </h2>

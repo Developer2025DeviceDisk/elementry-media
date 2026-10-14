@@ -4,7 +4,7 @@ export function Brand({ className = '' }: { className?: string }) {
     <Link
       href="/"
       aria-label="Elementry Media home"
-      className={`whitespace-nowrap text-base font-extrabold tracking-wider sm:text-xl ${className}`}
+      className={`whitespace-nowrap text-base font-bold tracking-tight sm:text-xl ${className}`}
     >
       Elementry<span className="text-primary">.</span>MEDIA
     </Link>

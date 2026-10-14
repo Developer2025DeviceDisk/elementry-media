@@ -6,8 +6,8 @@ export default function OpenGraphImage() {
   return new ImageResponse(
     <div
       style={{
-        background: '#fff3ec',
-        color: '#111827',
+        background: '#10283f',
+        color: '#f5f9fc',
         width: '100%',
         height: '100%',
         display: 'flex',
@@ -16,7 +16,7 @@ export default function OpenGraphImage() {
         padding: 90,
       }}
     >
-      <div style={{ fontSize: 34, color: '#e8590c' }}>Elementry.MEDIA</div>
+      <div style={{ fontSize: 34, color: '#8edbd1' }}>Elementry.MEDIA</div>
       <div style={{ fontSize: 80, fontWeight: 700, marginTop: 48 }}>
         Professional Broadcast Solutions.
       </div>
