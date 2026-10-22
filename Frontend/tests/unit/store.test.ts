@@ -46,7 +46,7 @@ describe('RTK Query session and cache behavior', () => {
       env.apiUrl = configuredUrl;
     }
   });
-  it('sends catalog text search while advanced search is disabled', async () => {
+  it('sends catalog text and category filters while advanced search is disabled', async () => {
     const advancedSearch = env.search;
     env.search = false;
     const requests: Request[] = [];
@@ -70,11 +70,69 @@ describe('RTK Query session and cache behavior', () => {
         .unwrap();
       const params = new URL(requests[0].url).searchParams;
       expect(params.get('q')).toBe('PTZ camera');
-      expect(params.get('category')).toBeNull();
+      expect(params.get('category')).toBe('cameras');
       expect(requests[0].credentials).toBe('include');
     } finally {
       env.search = advancedSearch;
     }
+  });
+  it('restores local Mine A5 images when an older API omits them without changing live product values', async () => {
+    const liveProduct = {
+      id: '609c5620-43fc-4e39-be91-2bcdab49d268',
+      sku: 'MINE-A5',
+      name: 'Mine A5',
+      price: '68000.00',
+      currency: 'INR',
+      stock: 7,
+      active: true,
+      description: null,
+      createdAt: '2026-10-22T00:00:00Z',
+      updatedAt: '2026-10-22T00:00:00Z',
+    };
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (request: Request) =>
+        request.url.includes('/products?')
+          ? json({ data: [liveProduct], page: 1, limit: 12, total: 1 })
+          : json(liveProduct),
+      ),
+    );
+    const store = testStore();
+    const listing = await store
+      .dispatch(productApi.endpoints.getProducts.initiate({ page: 1, limit: 12 }))
+      .unwrap();
+    const detail = await store
+      .dispatch(productApi.endpoints.getProductBySlug.initiate(`mine-a5--${liveProduct.id}`))
+      .unwrap();
+    const byId = await store
+      .dispatch(productApi.endpoints.getProductById.initiate(liveProduct.id))
+      .unwrap();
+    expect(listing).toMatchObject({ page: 1, limit: 12, total: 1 });
+    for (const product of [listing.data[0], detail, byId]) {
+      expect(product).toMatchObject(liveProduct);
+      expect(product.images).toHaveLength(8);
+      expect(product.images?.[0]).toBe('/images/products/mine-a5/camera.png');
+    }
+  });
+  it('preserves API-provided images and leaves unrelated products without invented images', async () => {
+    const { withProductImages } = await import('@/lib/constants/product-images');
+    const product = {
+      id: 'live-id',
+      sku: 'MINE-A5',
+      name: 'Mine A5',
+      price: '69000.00',
+      currency: 'INR',
+      stock: 10,
+      active: true,
+      description: null,
+      createdAt: '',
+      updatedAt: '',
+    };
+    const apiProduct = { ...product, images: ['/images/custom-camera.png'] };
+    expect(withProductImages(apiProduct)).toBe(apiProduct);
+    const unrelated = { ...product, sku: 'OTHER-SKU' };
+    expect(withProductImages(unrelated)).toBe(unrelated);
+    expect(withProductImages({ ...product, images: [] }).images).toHaveLength(8);
   });
   it('shares a single CSRF bootstrap for parallel writes', async () => {
     let bootstraps = 0;

@@ -9,11 +9,13 @@ import { Button } from '@/components/ui/button';
 import { env } from '@/config/env';
 import { BrandDirectory } from '@/components/product/brand-directory';
 import { brands, findBrand } from '@/lib/constants/brands';
+import { shopCategories } from '@/lib/constants/categories';
 interface Props {
   searchParams: Promise<{
     page?: string | string[];
     q?: string | string[];
     brand?: string | string[];
+    category?: string | string[];
   }>;
 }
 const firstValue = (value?: string | string[]) => (Array.isArray(value) ? value[0] : value) ?? '';
@@ -22,13 +24,16 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const current = Math.min(1000, Math.max(1, Math.floor(Number(firstValue(params.page)) || 1)));
   const q = firstValue(params.q).trim();
   const brand = firstValue(params.brand).trim().slice(0, 100);
+  const category = firstValue(params.category).trim().toLowerCase().slice(0, 100);
   return {
     title: brand
       ? `${findBrand(brand)?.name ?? brand} products`
       : q
         ? 'Search products'
-        : 'Products',
-    ...(q || brand ? { robots: { index: false, follow: true } } : {}),
+        : category === 'show'
+          ? 'Show equipment | Shop'
+          : 'Shop',
+    ...(q || brand || category ? { robots: { index: false, follow: true } } : {}),
     alternates: { canonical: current === 1 ? '/products' : `/products?page=${current}` },
   };
 }
@@ -40,21 +45,28 @@ export default async function ProductsPage({ searchParams }: Props) {
   const requestedBrand = firstValue(params.brand).trim().slice(0, 100);
   const knownBrand = findBrand(requestedBrand);
   const brand = knownBrand?.name ?? requestedBrand;
+  const category = firstValue(params.category).trim().toLowerCase().slice(0, 100);
   const pageHref = (nextPage: number) =>
-    `/products?${new URLSearchParams({ page: String(nextPage), ...(q ? { q } : {}), ...(brand ? { brand } : {}) })}`;
-  const result = await getCatalog(page, 12, undefined, q, brand)
+    `/products?${new URLSearchParams({ page: String(nextPage), ...(q ? { q } : {}), ...(brand ? { brand } : {}), ...(category ? { category } : {}) })}`;
+  const result = await getCatalog(page, 12, category || undefined, q, brand)
     .then((data) => ({ data, error: undefined }))
     .catch((error: unknown) => ({ data: undefined, error }));
   return (
     <div className="container py-10 sm:py-14">
-      <Breadcrumbs items={[{ label: 'Products' }]} />
+      <Breadcrumbs items={[{ label: 'Shop' }]} />
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4 rounded-2xl border bg-surface p-6 sm:p-8">
         <div>
           <p className="mb-3 text-xs font-bold tracking-widest text-primary uppercase">
             Professional Equipment
           </p>
           <h1 className="text-4xl font-bold">
-            {brand ? `${brand} products` : q ? 'Search results' : 'Our products'}
+            {brand
+              ? `${brand} products`
+              : q
+                ? 'Search results'
+                : category === 'show'
+                  ? 'Show equipment'
+                  : 'Shop'}
           </h1>
           <p className="mt-3 text-muted-foreground">
             {q
@@ -68,12 +80,25 @@ export default async function ProductsPage({ searchParams }: Props) {
           </Link>
         )}
       </div>
+      <nav aria-label="Shop categories" className="mb-6 flex flex-wrap gap-3">
+        <Button asChild variant={!category ? 'default' : 'outline'}>
+          <Link href="/products" aria-current={!category ? 'page' : undefined}>
+            All products
+          </Link>
+        </Button>
+        {shopCategories.map((item) => (
+          <Button asChild key={item.slug} variant={category === item.slug ? 'default' : 'outline'}>
+            <Link href={`/categories/${item.slug}`}>{item.name}</Link>
+          </Button>
+        ))}
+      </nav>
       <form
-        key={JSON.stringify([q, brand])}
+        key={JSON.stringify([q, brand, category])}
         role="search"
         action="/products"
         className="mb-6 flex flex-col gap-3 rounded-2xl border bg-background p-5 shadow-xs sm:flex-row sm:flex-wrap sm:items-end"
       >
+        {category && <input type="hidden" name="category" value={category} />}
         <label className="flex min-w-0 flex-col gap-2 text-sm font-medium sm:min-w-64 sm:flex-1">
           Search products
           <input

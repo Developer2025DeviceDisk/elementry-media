@@ -118,7 +118,13 @@ export async function mockApi(
     }
     if (path.startsWith('cart/items')) {
       if (method === 'POST')
-        state.cart.items = [{ id: 'item1', product, quantity: Number(body?.quantity ?? 1) }];
+        state.cart.items = [
+          {
+            id: 'item1',
+            product: state.products.find((item) => item.id === body?.productId) ?? product,
+            quantity: Number(body?.quantity ?? 1),
+          },
+        ];
       if (method === 'PATCH') state.cart.items[0].quantity = Number(body?.quantity);
       if (method === 'DELETE') state.cart.items = [];
       const total = state.cart.items

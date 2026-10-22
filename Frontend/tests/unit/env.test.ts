@@ -8,6 +8,7 @@ const publicVariables = [
   'NEXT_PUBLIC_SEARCH_API_ENABLED',
   'NEXT_PUBLIC_ADMIN_API_ENABLED',
   'NEXT_PUBLIC_PASSWORD_RECOVERY_ENABLED',
+  'NEXT_PUBLIC_WHATSAPP_NUMBER',
 ];
 
 afterEach(() => {
@@ -27,6 +28,7 @@ describe('deployment environment', () => {
       search: false,
       admin: false,
       passwordRecovery: false,
+      whatsappNumber: undefined,
     });
   });
 
@@ -53,6 +55,17 @@ describe('deployment environment', () => {
     expect(config.env?.NEXT_PUBLIC_API_URL).toBe('http://localhost:4102/api/v1');
   });
 
+  it('defaults WhatsApp orders to the confirmed business number and permits an override', async () => {
+    vi.resetModules();
+    vi.stubEnv('NEXT_PUBLIC_WHATSAPP_NUMBER', '');
+    const defaults = await import('../../next.config');
+    expect(defaults.default.env?.NEXT_PUBLIC_WHATSAPP_NUMBER).toBe('919015747301');
+    vi.resetModules();
+    vi.stubEnv('NEXT_PUBLIC_WHATSAPP_NUMBER', ' 919000000000 ');
+    const override = await import('../../next.config');
+    expect(override.default.env?.NEXT_PUBLIC_WHATSAPP_NUMBER).toBe('919000000000');
+  });
+
   it('prefers an explicit site URL and falls back to the deployment domain', () => {
     expect(
       resolveAppUrl({ appUrl: ' https://elementry.example ', productionDomain: 'other.example' }),
@@ -68,6 +81,8 @@ describe('deployment environment', () => {
     ['NEXT_PUBLIC_API_URL', 'ftp://api.example'],
     ['NEXT_PUBLIC_APP_URL', 'site.example'],
     ['NEXT_PUBLIC_SEARCH_API_ENABLED', 'yes'],
+    ['NEXT_PUBLIC_WHATSAPP_NUMBER', 'not-a-number'],
+    ['NEXT_PUBLIC_WHATSAPP_NUMBER', '+91 1234567890'],
   ])('rejects invalid nonempty %s', async (name, value) => {
     vi.resetModules();
     vi.stubEnv(name, value);

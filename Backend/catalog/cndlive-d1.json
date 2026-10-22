@@ -1,0 +1,58 @@
+{
+  "sku": "CND-D1",
+  "name": "CNDLive D1 4K HDMI/SDI Video Decoder",
+  "brand": "CNDLive",
+  "category": "show",
+  "price": "50000.00",
+  "regularPrice": "100000.00",
+  "currency": "INR",
+  "description": "The CNDLive D1 4K HDMI/SDI Video Decoder brings high-resolution network video streams into professional broadcast and AV workflows. It supports up to 4K UHD at 60fps through HDMI 2.0, alongside a 3G-SDI output supporting up to 1080p60, giving broadcasters, live event producers, and AV professionals flexible display and production connections.\n\nH.264 and H.265 decoding, NDI and common streaming protocol support, embedded audio, and a 3.5mm stereo line output help integrate the D1 into existing media systems. Two Gigabit Ethernet ports, including one with PoE, provide network connectivity. Configure the device through its web-based interface and supported CNDLive management tools.\n\nUse the D1 to receive network video for broadcasting, large-screen event playback, corporate presentations, digital signage, and remote education. Select the output resolution, source protocol, and network configuration for the intended workflow.",
+  "images": [
+    "/images/products/cndlive-d1/front-top.jpg",
+    "/images/products/cndlive-d1/front-angle.jpg",
+    "/images/products/cndlive-d1/front-bottom.jpg",
+    "/images/products/cndlive-d1/rear.jpg"
+  ],
+  "features": [
+    "4K UHD decoding up to 3840 × 2160 at 60fps over HDMI",
+    "HDMI 2.0 and 3G-SDI outputs for professional AV workflows",
+    "H.264 and H.265 video decoding",
+    "NDI High Bandwidth, NDI|HX2, and common IP streaming protocols",
+    "Embedded HDMI/SDI audio and 3.5mm stereo line output",
+    "Two Gigabit Ethernet ports, one with PoE",
+    "Web-based configuration and supported CNDLive management tools"
+  ],
+  "specifications": [
+    { "label": "Video outputs", "value": "HDMI 2.0 and 3G-SDI" },
+    { "label": "Maximum output resolution", "value": "HDMI: 3840 × 2160 (4K UHD) at up to 60fps; 3G-SDI: 1920 × 1080 at up to 60fps" },
+    { "label": "Video decoding", "value": "H.264 and H.265" },
+    { "label": "Audio output", "value": "Embedded audio through HDMI/SDI and a 3.5mm stereo line output" },
+    { "label": "Network", "value": "2 × 100M/1000M Ethernet ports, including one with PoE" },
+    { "label": "Supported protocols", "value": "NDI High Bandwidth, NDI|HX2, SRT, RTMP, RTMPS, HLS, TS over UDP, RTSP, and RTMP server" },
+    { "label": "Control interface", "value": "Web-based GUI and CNDLive Manager" },
+    { "label": "Dimensions", "value": "140 × 131.2 × 43.7mm" },
+    { "label": "Power supply", "value": "DC 12V / 2A" },
+    { "label": "Operating temperature", "value": "-10°C to 45°C" },
+    { "label": "Weight", "value": "443g" }
+  ],
+  "useCases": [
+    { "title": "Broadcasting", "description": "Deliver decoded network video signals to TV stations and professional broadcast systems." },
+    { "title": "Live event production", "description": "Receive video feeds for playback on large screens and integration into compatible event production workflows." },
+    { "title": "Corporate and enterprise streaming", "description": "Decode live streams for presentations, conferences, and internal communications." },
+    { "title": "Digital signage", "description": "Bring network video into advertising and information displays requiring high-definition playback." },
+    { "title": "Education", "description": "Decode video lectures and streaming sessions for remote learning and classroom displays." }
+  ],
+  "faqs": [
+    { "question": "What video resolutions does the CNDLive D1 support?", "answer": "The D1 supports up to 3840 × 2160 (4K UHD) at 60fps through HDMI. Its 3G-SDI output supports up to 1920 × 1080 at 60fps. Choose a compatible source and output configuration." },
+    { "question": "What video compression formats are compatible with the D1 decoder?", "answer": "The CNDLive D1 supports H.264 and H.265 video compression formats for efficient, high-quality video decoding." },
+    { "question": "Can the D1 decode streams from various network protocols?", "answer": "Yes. Supported protocols include NDI High Bandwidth, NDI|HX2, SRT, RTMP, RTMPS, HLS, TS over UDP, RTSP, and RTMP server. Confirm source compatibility and firmware configuration for the intended workflow." },
+    { "question": "What outputs are available on the D1 decoder?", "answer": "The D1 provides HDMI 2.0 and 3G-SDI video outputs for compatible monitors, TVs, projectors, and production equipment." },
+    { "question": "Does the CNDLive D1 support audio output?", "answer": "Yes. It supports embedded audio through HDMI and SDI and includes a 3.5mm stereo audio line output." },
+    { "question": "What network connections does the D1 decoder offer?", "answer": "The D1 provides two 100M/1000M Ethernet ports, including one with PoE, for network integration." },
+    { "question": "How can I configure the D1 decoder?", "answer": "Configure the D1 through its web-based GUI or supported CNDLive management tools. Follow the manufacturer’s setup instructions for network addressing, source streams, and output settings." },
+    { "question": "What are the operating temperature conditions for the D1?", "answer": "The manufacturer lists an operating temperature range of -10°C to 45°C. Ensure suitable ventilation and operating conditions for the installation." },
+    { "question": "Is the D1 decoder suitable for live events?", "answer": "Yes. Its 4K HDMI decoding, SDI output, and supported network protocols suit concerts, sports, conferences, and corporate events with compatible sources and production equipment." },
+    { "question": "What power supply does the D1 decoder use?", "answer": "The manufacturer’s current specifications list DC 12V / 2A. The device also has one Ethernet port with PoE support; confirm the intended power arrangement during setup." }
+  ],
+  "manufacturerUrl": "https://www.cndlive.com/products/d1-4k-ip-video-decoder/specs"
+}

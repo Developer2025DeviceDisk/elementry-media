@@ -1,0 +1,304 @@
+{
+  "CND-D1": {
+    "regularPrice": "100000.00",
+    "category": "show",
+    "images": [
+      "/images/products/cndlive-d1/front-top.jpg",
+      "/images/products/cndlive-d1/front-angle.jpg",
+      "/images/products/cndlive-d1/front-bottom.jpg",
+      "/images/products/cndlive-d1/rear.jpg"
+    ],
+    "features": [
+      "4K UHD decoding up to 3840 × 2160 at 60fps over HDMI",
+      "HDMI 2.0 and 3G-SDI outputs for professional AV workflows",
+      "H.264 and H.265 video decoding",
+      "NDI High Bandwidth, NDI|HX2, and common IP streaming protocols",
+      "Embedded HDMI/SDI audio and 3.5mm stereo line output",
+      "Two Gigabit Ethernet ports, one with PoE",
+      "Web-based configuration and supported CNDLive management tools"
+    ],
+    "specifications": [
+      {
+        "label": "Video outputs",
+        "value": "HDMI 2.0 and 3G-SDI"
+      },
+      {
+        "label": "Maximum output resolution",
+        "value": "HDMI: 3840 × 2160 (4K UHD) at up to 60fps; 3G-SDI: 1920 × 1080 at up to 60fps"
+      },
+      {
+        "label": "Video decoding",
+        "value": "H.264 and H.265"
+      },
+      {
+        "label": "Audio output",
+        "value": "Embedded audio through HDMI/SDI and a 3.5mm stereo line output"
+      },
+      {
+        "label": "Network",
+        "value": "2 × 100M/1000M Ethernet ports, including one with PoE"
+      },
+      {
+        "label": "Supported protocols",
+        "value": "NDI High Bandwidth, NDI|HX2, SRT, RTMP, RTMPS, HLS, TS over UDP, RTSP, and RTMP server"
+      },
+      {
+        "label": "Control interface",
+        "value": "Web-based GUI and CNDLive Manager"
+      },
+      {
+        "label": "Dimensions",
+        "value": "140 × 131.2 × 43.7mm"
+      },
+      {
+        "label": "Power supply",
+        "value": "DC 12V / 2A"
+      },
+      {
+        "label": "Operating temperature",
+        "value": "-10°C to 45°C"
+      },
+      {
+        "label": "Weight",
+        "value": "443g"
+      }
+    ],
+    "useCases": [
+      {
+        "title": "Broadcasting",
+        "description": "Deliver decoded network video signals to TV stations and professional broadcast systems."
+      },
+      {
+        "title": "Live event production",
+        "description": "Receive video feeds for playback on large screens and integration into compatible event production workflows."
+      },
+      {
+        "title": "Corporate and enterprise streaming",
+        "description": "Decode live streams for presentations, conferences, and internal communications."
+      },
+      {
+        "title": "Digital signage",
+        "description": "Bring network video into advertising and information displays requiring high-definition playback."
+      },
+      {
+        "title": "Education",
+        "description": "Decode video lectures and streaming sessions for remote learning and classroom displays."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What video resolutions does the CNDLive D1 support?",
+        "answer": "The D1 supports up to 3840 × 2160 (4K UHD) at 60fps through HDMI. Its 3G-SDI output supports up to 1920 × 1080 at 60fps. Choose a compatible source and output configuration."
+      },
+      {
+        "question": "What video compression formats are compatible with the D1 decoder?",
+        "answer": "The CNDLive D1 supports H.264 and H.265 video compression formats for efficient, high-quality video decoding."
+      },
+      {
+        "question": "Can the D1 decode streams from various network protocols?",
+        "answer": "Yes. Supported protocols include NDI High Bandwidth, NDI|HX2, SRT, RTMP, RTMPS, HLS, TS over UDP, RTSP, and RTMP server. Confirm source compatibility and firmware configuration for the intended workflow."
+      },
+      {
+        "question": "What outputs are available on the D1 decoder?",
+        "answer": "The D1 provides HDMI 2.0 and 3G-SDI video outputs for compatible monitors, TVs, projectors, and production equipment."
+      },
+      {
+        "question": "Does the CNDLive D1 support audio output?",
+        "answer": "Yes. It supports embedded audio through HDMI and SDI and includes a 3.5mm stereo audio line output."
+      },
+      {
+        "question": "What network connections does the D1 decoder offer?",
+        "answer": "The D1 provides two 100M/1000M Ethernet ports, including one with PoE, for network integration."
+      },
+      {
+        "question": "How can I configure the D1 decoder?",
+        "answer": "Configure the D1 through its web-based GUI or supported CNDLive management tools. Follow the manufacturer’s setup instructions for network addressing, source streams, and output settings."
+      },
+      {
+        "question": "What are the operating temperature conditions for the D1?",
+        "answer": "The manufacturer lists an operating temperature range of -10°C to 45°C. Ensure suitable ventilation and operating conditions for the installation."
+      },
+      {
+        "question": "Is the D1 decoder suitable for live events?",
+        "answer": "Yes. Its 4K HDMI decoding, SDI output, and supported network protocols suit concerts, sports, conferences, and corporate events with compatible sources and production equipment."
+      },
+      {
+        "question": "What power supply does the D1 decoder use?",
+        "answer": "The manufacturer’s current specifications list DC 12V / 2A. The device also has one Ethernet port with PoE support; confirm the intended power arrangement during setup."
+      }
+    ],
+    "manufacturerUrl": "https://www.cndlive.com/products/d1-4k-ip-video-decoder/specs"
+  },
+  "MINE-A320H": {
+    "regularPrice": "399999.00",
+    "category": "show",
+    "images": [
+      "/images/products/mine-a320h/decoder.png",
+      "/images/products/mine-a320h/front-angle.jpg",
+      "/images/products/mine-a320h/front.jpg",
+      "/images/products/mine-a320h/rear.jpg"
+    ],
+    "features": [
+      "Up to 8K UHD video decoding at 7680 × 4320 resolution",
+      "5G multi-link bonding for reliable professional video transmission",
+      "Multi-network connectivity across 5G/4G, Wi-Fi, Ethernet, and compatible USB network devices",
+      "Low-latency video workflows, subject to the network and configuration",
+      "RTMP, RTSP, and SRT streaming protocol support",
+      "HDMI input/output and IP stream integration for production systems",
+      "Remote management and configuration through the supported MLive workflow",
+      "Professional production design for transport and deployment between locations",
+      "H.264 and H.265/HEVC compression for efficient bandwidth use",
+      "Audio input and output for synchronized audio/video workflows"
+    ],
+    "useCases": [
+      {
+        "title": "Live event broadcasting",
+        "description": "Receive and decode live video for sports, concerts, conferences, and other events where high-quality, real-time coverage is essential."
+      },
+      {
+        "title": "Remote production",
+        "description": "Bring video feeds from remote crews and compatible encoders into a central production workflow."
+      },
+      {
+        "title": "News gathering",
+        "description": "Receive field video through compatible bonded network workflows for reliable news reporting."
+      },
+      {
+        "title": "Corporate streaming",
+        "description": "Support professional webinars, virtual meetings, and live product launches with high-quality video decoding."
+      },
+      {
+        "title": "Education and training",
+        "description": "Support remote education, demonstrations, and training sessions with professional video reception and decoding."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is the MiNE Media A320H 8K 5G Bonding Video Decoder?",
+        "answer": "The A320H is a professional video decoder supporting up to 8K resolution and bonded network workflows for broadcasting, live streaming, and remote video production."
+      },
+      {
+        "question": "What are the key features of the MiNE Media A320H?",
+        "answer": "Key features include 8K UHD decoding, 5G multi-link bonding, multi-network connectivity, HDMI integration, low-latency workflows, remote management, and efficient video compression."
+      },
+      {
+        "question": "How does 5G bonding technology benefit the A320H?",
+        "answer": "Bonding combines compatible network connections to improve available bandwidth and transmission reliability. Performance depends on network coverage, data plans, and the complete streaming setup."
+      },
+      {
+        "question": "What resolution does the A320H support?",
+        "answer": "The A320H supports up to 8K decoding at 7680 × 4320 pixels. Choose a compatible source stream and output configuration for the required resolution."
+      },
+      {
+        "question": "What input formats are supported by the A320H?",
+        "answer": "The A320H supports IP streams and HDMI integration. The manufacturer lists HDMI input and HDMI outputs for this model. Confirm the exact source format and connection requirements before ordering; SDI connectivity is not claimed for the A320H."
+      },
+      {
+        "question": "Is the A320H suitable for live streaming?",
+        "answer": "Yes. Its bonded network workflows, high-resolution decoding, and streaming protocol support make it suitable for professional live production and remote reception."
+      },
+      {
+        "question": "How does the A320H ensure low latency in video transmission?",
+        "answer": "Its video processing and supported streaming workflows are designed to minimize delay. Actual latency varies with the source, encoder, network conditions, protocol, and configuration."
+      },
+      {
+        "question": "What types of video production environments is the A320H best suited for?",
+        "answer": "It is suited to professional broadcasting, live event production, remote production, news gathering, corporate streaming, and education or training environments."
+      },
+      {
+        "question": "Can the A320H be integrated with other video production equipment?",
+        "answer": "Yes. Compatible encoders, IP sources, HDMI displays, and production equipment can be integrated into the workflow. Confirm supported protocols and connection formats for the planned system."
+      },
+      {
+        "question": "What makes the A320H a versatile choice for video production?",
+        "answer": "The combination of high-resolution decoding, multi-network bonding, HDMI and IP connectivity, audio integration, and remote management supports a range of professional video production needs."
+      }
+    ],
+    "manufacturerUrl": "https://www.minemedia.tv/Video-Receiver-Decoder/Mine-A320H-5G-Bonding-Video-Decoder.html"
+  },
+  "MINE-A5": {
+    "regularPrice": "100000.00",
+    "category": "show",
+    "images": [
+      "/images/products/mine-a5/camera.png",
+      "/images/products/mine-a5/cbea97_472ddb1ec6a3478ca242468af1c666f2~mv2.avif",
+      "/images/products/mine-a5/cbea97_585405fcca70414a9096e07370b2ed6e~mv2.avif",
+      "/images/products/mine-a5/cbea97_630740cc8bfb415aa0210f07ddce840b~mv2.avif",
+      "/images/products/mine-a5/cbea97_a45c1f07fdd54fdf92c035f08bb9ce67~mv2.avif",
+      "/images/products/mine-a5/cbea97_c21e50b34f13451da6608c9c04e2f9b3~mv2.avif",
+      "/images/products/mine-a5/overview.jpg",
+      "/images/products/mine-a5/package.jpg"
+    ],
+    "features": [
+      "Built-in 4G multi-network bonding technology",
+      "3-inch HD touchscreen for convenient control",
+      "Real-time live streaming and video recording",
+      "MP3 file import support",
+      "Compact and portable design",
+      "Logo integration, subtitles, scrolling text, and online graphics support"
+    ],
+    "useCases": [
+      {
+        "title": "Content creators and streamers",
+        "description": "Suitable for vloggers, influencers, and live-streaming professionals."
+      },
+      {
+        "title": "Journalists and broadcasters",
+        "description": "Designed for remote reporting and field broadcasting."
+      },
+      {
+        "title": "Event coverage",
+        "description": "Useful for concerts, sports events, outdoor activities, and live shows."
+      },
+      {
+        "title": "Corporate and educational use",
+        "description": "Suitable for webinars, online training, presentations, and educational broadcasts."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is the Mine A5 4K Network Bonding Streaming Camera?",
+        "answer": "It is a professional streaming camera designed for high-quality 4K video recording and live streaming."
+      },
+      {
+        "question": "What makes this camera special?",
+        "answer": "Its built-in 4G multi-network bonding technology helps combine network connections to improve streaming stability."
+      },
+      {
+        "question": "Which streaming platforms does it support?",
+        "answer": "It can be used with platforms such as YouTube, Facebook, and Twitch, subject to the device’s supported streaming protocols and configuration."
+      },
+      {
+        "question": "Is it suitable for outdoor streaming?",
+        "answer": "Yes, its portable design and network bonding capabilities make it suitable for outdoor events and remote locations with compatible network coverage."
+      },
+      {
+        "question": "What video resolution does it support?",
+        "answer": "The camera supports up to 4K streaming and recording. The manufacturer’s guide notes that live streaming and recording cannot both run at 4K simultaneously; choose compatible settings for each."
+      },
+      {
+        "question": "Does it support additional media and graphics?",
+        "answer": "It includes features such as MP3 importing, logo integration, subtitles, and scrolling text."
+      },
+      {
+        "question": "Is it easy to carry?",
+        "answer": "Yes, its compact design makes it convenient to transport for field reporting and event coverage."
+      },
+      {
+        "question": "Is special setup required?",
+        "answer": "The camera is designed for convenient operation, but network configuration and streaming platform setup may be required."
+      },
+      {
+        "question": "What accessories are included?",
+        "answer": "The manufacturer lists one A5 camera, one protective handbag, one USB Type-C cable, and one manual. Please confirm the supplied package with our team before ordering."
+      }
+    ],
+    "accessories": [
+      "A5 4G Bonding Streaming Camera × 1",
+      "Protective handbag × 1",
+      "USB Type-C cable × 1",
+      "Manual × 1"
+    ],
+    "manufacturerUrl": "https://www.minemedia.tv/Live-Camera/Mine-A5.html"
+  }
+}

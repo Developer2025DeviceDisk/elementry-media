@@ -1,0 +1,48 @@
+{
+  "sku": "MINE-A320H",
+  "name": "MiNE Media A320H 8K 5G Bonding Video Decoder",
+  "brand": "MiNE Media",
+  "category": "show",
+  "price": "351000.00",
+  "regularPrice": "399999.00",
+  "currency": "INR",
+  "description": "The MiNE Media A320H 8K 5G Bonding Video Decoder is designed for high-quality video decoding and professional streaming applications. Its multi-network bonding capabilities help maintain reliable transmission for broadcasting, remote production, and live events.\n\nWith support for up to 8K UHD decoding, 5G/4G bonding workflows, Wi-Fi and Ethernet connectivity, and remote management, the A320H integrates into professional video production systems. It supports RTMP, RTSP, and SRT streams, HDMI connections, efficient video compression, and synchronized audio/video workflows. Actual resolution and latency depend on the source, network conditions, and configuration.\n\nExample workflow: a news crew uses a compatible bonding encoder to send a live field feed over available networks. An A320H at the receiving production location decodes the incoming IP stream for HDMI output into the broadcast workflow. Configure the source, encoder, network, and decoder together for the required output resolution.\n\nThe A320H is suited to live event coverage, remote production, news gathering, corporate streaming, and educational broadcasts where reliable video reception and decoding are required.",
+  "images": [
+    "/images/products/mine-a320h/decoder.png",
+    "/images/products/mine-a320h/front-angle.jpg",
+    "/images/products/mine-a320h/front.jpg",
+    "/images/products/mine-a320h/rear.jpg"
+  ],
+  "features": [
+    "Up to 8K UHD video decoding at 7680 × 4320 resolution",
+    "5G multi-link bonding for reliable professional video transmission",
+    "Multi-network connectivity across 5G/4G, Wi-Fi, Ethernet, and compatible USB network devices",
+    "Low-latency video workflows, subject to the network and configuration",
+    "RTMP, RTSP, and SRT streaming protocol support",
+    "HDMI input/output and IP stream integration for production systems",
+    "Remote management and configuration through the supported MLive workflow",
+    "Professional production design for transport and deployment between locations",
+    "H.264 and H.265/HEVC compression for efficient bandwidth use",
+    "Audio input and output for synchronized audio/video workflows"
+  ],
+  "useCases": [
+    { "title": "Live event broadcasting", "description": "Receive and decode live video for sports, concerts, conferences, and other events where high-quality, real-time coverage is essential." },
+    { "title": "Remote production", "description": "Bring video feeds from remote crews and compatible encoders into a central production workflow." },
+    { "title": "News gathering", "description": "Receive field video through compatible bonded network workflows for reliable news reporting." },
+    { "title": "Corporate streaming", "description": "Support professional webinars, virtual meetings, and live product launches with high-quality video decoding." },
+    { "title": "Education and training", "description": "Support remote education, demonstrations, and training sessions with professional video reception and decoding." }
+  ],
+  "faqs": [
+    { "question": "What is the MiNE Media A320H 8K 5G Bonding Video Decoder?", "answer": "The A320H is a professional video decoder supporting up to 8K resolution and bonded network workflows for broadcasting, live streaming, and remote video production." },
+    { "question": "What are the key features of the MiNE Media A320H?", "answer": "Key features include 8K UHD decoding, 5G multi-link bonding, multi-network connectivity, HDMI integration, low-latency workflows, remote management, and efficient video compression." },
+    { "question": "How does 5G bonding technology benefit the A320H?", "answer": "Bonding combines compatible network connections to improve available bandwidth and transmission reliability. Performance depends on network coverage, data plans, and the complete streaming setup." },
+    { "question": "What resolution does the A320H support?", "answer": "The A320H supports up to 8K decoding at 7680 × 4320 pixels. Choose a compatible source stream and output configuration for the required resolution." },
+    { "question": "What input formats are supported by the A320H?", "answer": "The A320H supports IP streams and HDMI integration. The manufacturer lists HDMI input and HDMI outputs for this model. Confirm the exact source format and connection requirements before ordering; SDI connectivity is not claimed for the A320H." },
+    { "question": "Is the A320H suitable for live streaming?", "answer": "Yes. Its bonded network workflows, high-resolution decoding, and streaming protocol support make it suitable for professional live production and remote reception." },
+    { "question": "How does the A320H ensure low latency in video transmission?", "answer": "Its video processing and supported streaming workflows are designed to minimize delay. Actual latency varies with the source, encoder, network conditions, protocol, and configuration." },
+    { "question": "What types of video production environments is the A320H best suited for?", "answer": "It is suited to professional broadcasting, live event production, remote production, news gathering, corporate streaming, and education or training environments." },
+    { "question": "Can the A320H be integrated with other video production equipment?", "answer": "Yes. Compatible encoders, IP sources, HDMI displays, and production equipment can be integrated into the workflow. Confirm supported protocols and connection formats for the planned system." },
+    { "question": "What makes the A320H a versatile choice for video production?", "answer": "The combination of high-resolution decoding, multi-network bonding, HDMI and IP connectivity, audio integration, and remote management supports a range of professional video production needs." }
+  ],
+  "manufacturerUrl": "https://www.minemedia.tv/Video-Receiver-Decoder/Mine-A320H-5G-Bonding-Video-Decoder.html"
+}

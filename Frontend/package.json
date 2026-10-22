@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "next dev -p 3001",
+    "catalog:sync": "node scripts/sync-catalog-content.cjs",
     "build": "next build",
     "start": "next start -p 3001",
     "typecheck": "tsc --noEmit",

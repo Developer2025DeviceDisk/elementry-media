@@ -27,7 +27,10 @@ test('login follows a protected redirect and logout removes access', async ({ pa
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
   await expect(page).toHaveURL(/\/account\/orders$/);
   await expect(page.getByText('No orders yet')).toBeVisible();
-  await page.getByRole('button', { name: 'Sign out' }).click();
+  if (!(await page.getByRole('button', { name: 'Sign out', exact: true }).isVisible())) {
+    await page.getByRole('button', { name: 'Toggle navigation' }).click();
+  }
+  await page.getByRole('button', { name: 'Sign out', exact: true }).click();
   await expect(page).toHaveURL(/\/login/);
   expect(state.signedIn).toBe(false);
 });

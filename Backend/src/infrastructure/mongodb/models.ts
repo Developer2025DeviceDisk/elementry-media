@@ -21,6 +21,16 @@ export interface ProductDocument {
   brand?: string;
   description: string | null;
   price: Decimal128;
+  regularPrice?: Decimal128;
+  category?: string;
+  availability?: 'on-request';
+  images?: string[];
+  features?: string[];
+  specifications?: { label: string; value: string }[];
+  useCases?: { title: string; description: string }[];
+  faqs?: { question: string; answer: string }[];
+  accessories?: string[];
+  manufacturerUrl?: string;
   currency: string;
   stock: number;
   active: boolean;

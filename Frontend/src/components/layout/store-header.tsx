@@ -12,7 +12,7 @@ import { env } from '@/config/env';
 import { Search } from 'lucide-react';
 const links = [
   { label: 'Home', href: '/' },
-  { label: 'Products', href: '/products' },
+  { label: 'Shop', href: '/products' },
   { label: 'Brands', href: '/#brands' },
   { label: 'About', href: '/#about' },
   { label: 'Solutions', href: '/#services' },
@@ -58,7 +58,7 @@ export function StoreHeader() {
               </button>
             </form>
             {
-              <Button asChild variant="ghost" size="icon">
+              <Button asChild variant="ghost" size="icon" className="hidden sm:inline-flex">
                 <Link href="/account/wishlist" aria-label="Wishlist">
                   <Heart className="size-5" />
                 </Link>
@@ -88,6 +88,7 @@ export function StoreHeader() {
               <Button
                 variant="ghost"
                 size="sm"
+                className="hidden sm:inline-flex"
                 aria-label="Sign out"
                 disabled={isLoading}
                 onClick={() => {
@@ -129,6 +130,28 @@ export function StoreHeader() {
                 {label}
               </Link>
             ))}
+            <Link
+              href="/account/wishlist"
+              onClick={() => dispatch(closeSidebar())}
+              className="rounded-lg px-3 py-2 font-medium hover:bg-accent sm:hidden"
+            >
+              Wishlist
+            </Link>
+            {user && (
+              <Button
+                variant="ghost"
+                className="justify-start sm:hidden"
+                disabled={isLoading}
+                onClick={() => {
+                  dispatch(closeSidebar());
+                  void logout()
+                    .unwrap()
+                    .catch(() => undefined);
+                }}
+              >
+                Sign out
+              </Button>
+            )}
             <form
               role="search"
               action="/products"

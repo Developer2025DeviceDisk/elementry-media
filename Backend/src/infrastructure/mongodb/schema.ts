@@ -18,7 +18,16 @@ export const collectionSchemas: Record<string, Document> = {
   products: { $and: [{ $jsonSchema: {
     bsonType: 'object', additionalProperties: false,
     required: ['_id', 'sku', 'name', 'description', 'price', 'currency', 'stock', 'active', 'createdAt', 'updatedAt'],
-    properties: { _id: uuid, sku: text(64), name: text(200), brand: text(100), description: { bsonType: ['string', 'null'] }, price: money, currency, stock: integer(0), active: { bsonType: 'bool' }, ...times },
+    properties: { _id: uuid, sku: text(64), name: text(200), brand: text(100), description: { bsonType: ['string', 'null'] }, price: money,
+      regularPrice: money, category: { ...text(100), pattern: '^[a-z0-9]+(?:-[a-z0-9]+)*$' }, availability: { enum: ['on-request'] },
+      images: { bsonType: 'array', maxItems: 20, items: { ...text(500), pattern: '^/[^/\\\\]' } },
+      features: { bsonType: 'array', maxItems: 40, items: text(500) },
+      specifications: { bsonType: 'array', maxItems: 40, items: { bsonType: 'object', additionalProperties: false, required: ['label', 'value'], properties: { label: text(100), value: text(2000) } } },
+      useCases: { bsonType: 'array', maxItems: 20, items: { bsonType: 'object', additionalProperties: false, required: ['title', 'description'], properties: { title: text(200), description: text(2000) } } },
+      faqs: { bsonType: 'array', maxItems: 40, items: { bsonType: 'object', additionalProperties: false, required: ['question', 'answer'], properties: { question: text(300), answer: text(3000) } } },
+      accessories: { bsonType: 'array', maxItems: 40, items: text(300) },
+      manufacturerUrl: { ...text(500), pattern: '^https://' },
+      currency, stock: integer(0), active: { bsonType: 'bool' }, ...times },
   } }, { $expr: { $eq: ['$price', { $round: ['$price', 2] }] } }] },
   orders: { $and: [{ $jsonSchema: {
     bsonType: 'object', additionalProperties: false,

@@ -35,6 +35,7 @@ export default defineConfig({
         NEXT_PUBLIC_SEARCH_API_ENABLED: 'true',
         NEXT_PUBLIC_ADMIN_API_ENABLED: 'true',
         NEXT_PUBLIC_PASSWORD_RECOVERY_ENABLED: 'true',
+        NEXT_PUBLIC_WHATSAPP_NUMBER: '919015747301',
       },
     },
   ],

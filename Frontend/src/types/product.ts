@@ -5,6 +5,15 @@ export interface Product {
   name: string;
   description: string | null;
   price: string;
+  regularPrice?: string;
+  category?: string;
+  availability?: 'on-request';
+  features?: string[];
+  specifications?: { label: string; value: string }[];
+  useCases?: { title: string; description: string }[];
+  faqs?: { question: string; answer: string }[];
+  accessories?: string[];
+  manufacturerUrl?: string;
   currency: string;
   stock: number;
   active: boolean;

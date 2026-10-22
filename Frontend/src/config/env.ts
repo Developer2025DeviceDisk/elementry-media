@@ -13,6 +13,10 @@ const schema = z.object({
   search: flag,
   admin: flag,
   passwordRecovery: flag,
+  whatsappNumber: z
+    .string()
+    .regex(/^[1-9][0-9]{6,14}$/)
+    .optional(),
 });
 export const env = schema.parse({
   apiUrl: optionalValue(process.env.NEXT_PUBLIC_API_URL),
@@ -21,4 +25,5 @@ export const env = schema.parse({
   search: optionalValue(process.env.NEXT_PUBLIC_SEARCH_API_ENABLED),
   admin: optionalValue(process.env.NEXT_PUBLIC_ADMIN_API_ENABLED),
   passwordRecovery: optionalValue(process.env.NEXT_PUBLIC_PASSWORD_RECOVERY_ENABLED),
+  whatsappNumber: optionalValue(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER),
 });

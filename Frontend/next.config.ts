@@ -5,6 +5,7 @@ const config: NextConfig = {
   env: {
     NEXT_PUBLIC_API_URL:
       process.env.NEXT_PUBLIC_API_URL?.trim() || 'https://elementry-media.onrender.com/api/v1',
+    NEXT_PUBLIC_WHATSAPP_NUMBER: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim() || '919015747301',
     NEXT_PUBLIC_APP_URL: resolveAppUrl({
       appUrl: process.env.NEXT_PUBLIC_APP_URL,
       productionDomain: process.env.VERCEL_PROJECT_PRODUCTION_URL,

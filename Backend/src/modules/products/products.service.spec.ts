@@ -53,6 +53,20 @@ describe('catalog search', () => {
     await service.list({ page: 1, limit: 12, q: 'a.*(b)' });
     expect(find).toHaveBeenCalledWith(expect.objectContaining({ $or: expect.arrayContaining([{ name: { $regex: 'a\\.\\*\\(b\\)', $options: 'i' } }]) }));
   });
+  it('filters Show independently of brand and search and isolates its cache', async () => {
+    await service.list({ page: 1, limit: 12, category: ' Show ', brand: 'MiNE Media', q: 'A5' });
+    expect(find).toHaveBeenCalledWith(expect.objectContaining({ active: true, category: 'show', brand: expect.any(Object), $or: expect.any(Array) }));
+    await service.list({ page: 1, limit: 12, brand: 'MiNE Media', q: 'A5' });
+    expect(remember.mock.calls[0][0]).not.toBe(remember.mock.calls[1][0]);
+    expect(await validate(plainToInstance(ProductQuery, { category: ['show'] }))).not.toHaveLength(0);
+    expect(await validate(plainToInstance(ProductQuery, { category: 'x'.repeat(101) }))).not.toHaveLength(0);
+  });
+  it('serializes optional product content and both exact prices without losing legacy fields', async () => {
+    const now = new Date();
+    const content = { category: 'show', availability: 'on-request', images: ['/images/camera.png'], features: ['4G bonding'], specifications: [{ label: 'Resolution', value: '4K' }], useCases: [{ title: 'Events', description: 'Live coverage' }], faqs: [{ question: 'Accessories?', answer: 'Confirm with supplier' }], accessories: ['USB cable'], manufacturerUrl: 'https://www.minemedia.tv/Live-Camera/Mine-A5.html' };
+    findOne.mockResolvedValue({ _id: 'camera-id', sku: 'MINE-A5', name: 'Mine A5', description: 'Camera', price: Decimal128.fromString('69000.00'), regularPrice: Decimal128.fromString('100000.00'), currency: 'INR', stock: 0, active: true, createdAt: now, updatedAt: now, ...content });
+    expect(await service.detail('camera-id')).toMatchObject({ id: 'camera-id', price: '69000.00', regularPrice: '100000.00', ...content });
+  });
   it('preserves API IDs, exact prices and timestamps without exposing BSON fields', async () => {
     const now = new Date('2026-10-13T00:00:00Z');
     findOne.mockResolvedValue({ _id: 'product-id', sku: 'SKU', name: 'Camera', description: null, price: Decimal128.fromString('9999999999.99'), currency: 'INR', stock: 1, active: true, createdAt: now, updatedAt: now });

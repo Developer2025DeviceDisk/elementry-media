@@ -1,0 +1,47 @@
+{
+  "sku": "MINE-A5",
+  "name": "Mine A5 4K Network Bonding Streaming Camera",
+  "brand": "MiNE Media",
+  "category": "show",
+  "price": "69000.00",
+  "regularPrice": "100000.00",
+  "currency": "INR",
+  "description": "The Mine A5 4K Network Bonding Streaming Camera is a high-performance, portable streaming solution designed for professional-quality 4K live streaming and recording. Its built-in 4G multi-network bonding technology helps maintain a stable connection in areas with poor network coverage. It supports popular streaming platforms such as YouTube, Facebook, and Twitch, subject to supported protocols and configuration.\n\nControl the camera through its 3-inch HD touchscreen, stream live video, and record footage in the field. MP3 importing, logo integration, subtitles, scrolling text, and online graphics help you prepare a broadcast for your audience. Its compact design suits field reporting, event coverage, content creation, and corporate or educational broadcasts. Network coverage and streaming platform setup are required; live streaming and recording settings may use different resolutions.",
+  "images": [
+    "/images/products/mine-a5/camera.png",
+    "/images/products/mine-a5/cbea97_472ddb1ec6a3478ca242468af1c666f2~mv2.avif",
+    "/images/products/mine-a5/cbea97_585405fcca70414a9096e07370b2ed6e~mv2.avif",
+    "/images/products/mine-a5/cbea97_630740cc8bfb415aa0210f07ddce840b~mv2.avif",
+    "/images/products/mine-a5/cbea97_a45c1f07fdd54fdf92c035f08bb9ce67~mv2.avif",
+    "/images/products/mine-a5/cbea97_c21e50b34f13451da6608c9c04e2f9b3~mv2.avif",
+    "/images/products/mine-a5/overview.jpg",
+    "/images/products/mine-a5/package.jpg"
+  ],
+  "features": [
+    "Built-in 4G multi-network bonding technology",
+    "3-inch HD touchscreen for convenient control",
+    "Real-time live streaming and video recording",
+    "MP3 file import support",
+    "Compact and portable design",
+    "Logo integration, subtitles, scrolling text, and online graphics support"
+  ],
+  "useCases": [
+    { "title": "Content creators and streamers", "description": "Suitable for vloggers, influencers, and live-streaming professionals." },
+    { "title": "Journalists and broadcasters", "description": "Designed for remote reporting and field broadcasting." },
+    { "title": "Event coverage", "description": "Useful for concerts, sports events, outdoor activities, and live shows." },
+    { "title": "Corporate and educational use", "description": "Suitable for webinars, online training, presentations, and educational broadcasts." }
+  ],
+  "faqs": [
+    { "question": "What is the Mine A5 4K Network Bonding Streaming Camera?", "answer": "It is a professional streaming camera designed for high-quality 4K video recording and live streaming." },
+    { "question": "What makes this camera special?", "answer": "Its built-in 4G multi-network bonding technology helps combine network connections to improve streaming stability." },
+    { "question": "Which streaming platforms does it support?", "answer": "It can be used with platforms such as YouTube, Facebook, and Twitch, subject to the device’s supported streaming protocols and configuration." },
+    { "question": "Is it suitable for outdoor streaming?", "answer": "Yes, its portable design and network bonding capabilities make it suitable for outdoor events and remote locations with compatible network coverage." },
+    { "question": "What video resolution does it support?", "answer": "The camera supports up to 4K streaming and recording. The manufacturer’s guide notes that live streaming and recording cannot both run at 4K simultaneously; choose compatible settings for each." },
+    { "question": "Does it support additional media and graphics?", "answer": "It includes features such as MP3 importing, logo integration, subtitles, and scrolling text." },
+    { "question": "Is it easy to carry?", "answer": "Yes, its compact design makes it convenient to transport for field reporting and event coverage." },
+    { "question": "Is special setup required?", "answer": "The camera is designed for convenient operation, but network configuration and streaming platform setup may be required." },
+    { "question": "What accessories are included?", "answer": "The manufacturer lists one A5 camera, one protective handbag, one USB Type-C cable, and one manual. Please confirm the supplied package with our team before ordering." }
+  ],
+  "accessories": ["A5 4G Bonding Streaming Camera × 1", "Protective handbag × 1", "USB Type-C cable × 1", "Manual × 1"],
+  "manufacturerUrl": "https://www.minemedia.tv/Live-Camera/Mine-A5.html"
+}

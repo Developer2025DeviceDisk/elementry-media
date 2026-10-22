@@ -8,6 +8,7 @@ import { Breadcrumbs } from '@/components/common/breadcrumbs';
 import { ErrorState } from '@/components/common/states';
 import { ProductGallery } from '@/components/product/product-gallery';
 import { ProductDetails } from '@/components/product/product-details';
+import { ProductContent } from '@/components/product/product-content';
 import { ReviewList } from '@/components/product/review-list';
 interface Props {
   params: Promise<{ slug: string }>;
@@ -55,11 +56,25 @@ export default async function ProductPage({ params }: Props) {
   if (slug !== productSlug(product)) permanentRedirect(`/products/${productSlug(product)}`);
   return (
     <div className="container py-8">
-      <Breadcrumbs items={[{ label: 'Products', href: '/products' }, { label: product.name }]} />
-      <div className="grid gap-10 md:grid-cols-2">
+      <Breadcrumbs
+        items={[
+          { label: 'Shop', href: '/products' },
+          ...(product.category
+            ? [
+                {
+                  label: product.category === 'show' ? 'Show' : product.category,
+                  href: `/categories/${encodeURIComponent(product.category)}`,
+                },
+              ]
+            : []),
+          { label: product.name },
+        ]}
+      />
+      <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-12">
         <ProductGallery images={product.images} name={product.name} />
         <ProductDetails product={product} />
       </div>
+      <ProductContent product={product} />
       <ReviewList productId={product.id} />
       <script
         type="application/ld+json"
@@ -70,13 +85,22 @@ export default async function ProductPage({ params }: Props) {
             name: product.name,
             description: product.description,
             sku: product.sku,
+            ...(product.images?.length
+              ? { image: product.images.map((image) => new URL(image, env.appUrl).href) }
+              : {}),
             ...(product.brand ? { brand: { '@type': 'Brand', name: product.brand } } : {}),
             offers: {
               '@type': 'Offer',
               price: product.price,
               priceCurrency: product.currency,
-              availability:
-                product.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+              ...(product.availability !== 'on-request'
+                ? {
+                    availability:
+                      product.stock > 0
+                        ? 'https://schema.org/InStock'
+                        : 'https://schema.org/OutOfStock',
+                  }
+                : {}),
               url: `${env.appUrl}/products/${productSlug(product)}`,
             },
           }),

@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 import { connection } from 'next/server';
 import { notFound } from 'next/navigation';
-import { env } from '@/config/env';
 import { getCatalog, getCategory } from '@/lib/api/catalog.server';
 import { ProductGrid } from '@/components/product/product-grid';
 import { Breadcrumbs } from '@/components/common/breadcrumbs';
-import { ErrorState, FeatureUnavailable } from '@/components/common/states';
+import { ErrorState } from '@/components/common/states';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 interface Props {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ page?: string }>;
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  if (!env.search) return { title: 'Categories', robots: { index: false } };
   try {
     const category = await getCategory(slug);
     return {
@@ -27,12 +27,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CategoryPage({ params, searchParams }: Props) {
   await connection();
   const { slug } = await params;
-  if (!env.search)
-    return (
-      <div className="container py-12">
-        <FeatureUnavailable title="Categories" />
-      </div>
-    );
   const page = Math.min(1000, Math.max(1, Math.floor(Number((await searchParams).page) || 1)));
   const result = await (async () => {
     const category = await getCategory(slug);
@@ -57,9 +51,27 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   }
   return (
     <div className="container py-10">
-      <Breadcrumbs items={[{ label: result.data.category.name }]} />
-      <h1 className="mb-8 text-3xl font-bold">{result.data.category.name}</h1>
+      <Breadcrumbs
+        items={[{ label: 'Shop', href: '/products' }, { label: result.data.category.name }]}
+      />
+      <h1 className="text-3xl font-bold">{result.data.category.name}</h1>
+      <p className="mt-3 mb-8 max-w-2xl leading-relaxed text-muted-foreground">
+        {result.data.category.description}
+      </p>
       <ProductGrid products={result.data.products.data} />
+      <nav aria-label="Pagination" className="mt-10 flex items-center justify-center gap-4">
+        {page > 1 && (
+          <Button asChild variant="outline">
+            <Link href={`/categories/${encodeURIComponent(slug)}?page=${page - 1}`}>Previous</Link>
+          </Button>
+        )}
+        <span aria-current="page">Page {page}</span>
+        {result.data.products.data.length === 12 && page < 1000 && (
+          <Button asChild variant="outline">
+            <Link href={`/categories/${encodeURIComponent(slug)}?page=${page + 1}`}>Next</Link>
+          </Button>
+        )}
+      </nav>
     </div>
   );
 }

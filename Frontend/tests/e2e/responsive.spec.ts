@@ -18,7 +18,7 @@ test('storefront fits the viewport and navigation is keyboard accessible', async
     await expect(page.getByRole('navigation', { name: 'Mobile' })).toBeVisible();
     await page
       .getByRole('navigation', { name: 'Mobile' })
-      .getByRole('link', { name: 'Products', exact: true })
+      .getByRole('link', { name: 'Shop', exact: true })
       .click();
     await expect(page).toHaveURL(/\/products$/);
   }

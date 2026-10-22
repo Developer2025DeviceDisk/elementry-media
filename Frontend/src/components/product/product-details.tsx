@@ -8,7 +8,7 @@ import { ProductActions } from './product-actions';
 export function ProductDetails({ product }: { product: Product }) {
   const brand = findBrand(product.brand);
   return (
-    <div className="flex flex-col justify-center py-4">
+    <div className="flex min-w-0 flex-col py-2 lg:py-4">
       <p className="mb-3 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
         {product.brand ? (
           <Link
@@ -28,13 +28,17 @@ export function ProductDetails({ product }: { product: Product }) {
         </div>
       )}
       <div className="mt-6 text-2xl">
-        <PriceDisplay price={product.price} currency={product.currency} />
+        <PriceDisplay
+          price={product.price}
+          currency={product.currency}
+          regularPrice={product.regularPrice}
+        />
       </div>
       <div className="mt-3">
-        <StockStatus stock={product.stock} />
+        <StockStatus stock={product.stock} availability={product.availability} />
       </div>
       <p className="my-8 leading-relaxed whitespace-pre-line text-muted-foreground">
-        {product.description ??
+        {product.description?.split('\n\n')[0] ??
           'Contact our team for equipment specifications and configuration advice.'}
       </p>
       <ProductActions product={product} />

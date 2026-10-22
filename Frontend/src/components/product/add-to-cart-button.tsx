@@ -12,19 +12,35 @@ export function AddToCartButton({
   stock,
   variantId,
   disabled,
+  quantity = 1,
+  intent = 'cart',
+  availability,
 }: {
   productId: string;
   stock: number;
   variantId?: string;
   disabled?: boolean;
+  quantity?: number;
+  intent?: 'cart' | 'checkout';
+  availability?: 'on-request';
 }) {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [add, { isLoading, isSuccess, error }] = useAddToCartMutation();
   async function handleAdd() {
     try {
-      await add({ productId, quantity: 1, variantId }).unwrap();
-      dispatch(openCart());
+      if (
+        !env.commerce ||
+        availability === 'on-request' ||
+        !Number.isInteger(quantity) ||
+        quantity < 1 ||
+        quantity > stock ||
+        disabled
+      )
+        return;
+      await add({ productId, quantity, variantId }).unwrap();
+      if (intent === 'checkout') router.push('/checkout');
+      else dispatch(openCart());
     } catch (failure) {
       if (failure && typeof failure === 'object' && 'status' in failure && failure.status === 401)
         router.push(`/login?next=${encodeURIComponent(window.location.pathname)}`);
@@ -34,11 +50,21 @@ export function AddToCartButton({
     <div>
       <Button
         className="w-full"
-        disabled={!env.commerce || stock <= 0 || isLoading || disabled}
+        variant={intent === 'checkout' ? 'outline' : 'default'}
+        disabled={
+          !env.commerce ||
+          availability === 'on-request' ||
+          stock <= 0 ||
+          !Number.isInteger(quantity) ||
+          quantity < 1 ||
+          quantity > stock ||
+          isLoading ||
+          disabled
+        }
         onClick={() => void handleAdd()}
       >
         <ShoppingBag className="size-4" />
-        {isLoading ? 'Adding…' : !env.commerce ? 'Purchasing coming soon' : 'Add to cart'}
+        {isLoading ? 'Adding…' : intent === 'checkout' ? 'Buy now' : 'Add to cart'}
       </Button>
       {isSuccess && (
         <p role="status" className="mt-2 text-sm text-primary">
